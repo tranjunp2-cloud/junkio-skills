@@ -1,0 +1,18 @@
+{
+  "name": "junkio-skills",
+  "owner": {
+    "name": "Junkio"
+  },
+  "metadata": {
+    "description": "Junkio's Claude Code skills for building distinctive, polished websites."
+  },
+  "plugins": [
+    {
+      "name": "web-builder",
+      "source": "./plugins/web-builder",
+      "description": "Build websites that look designed, not generated: picks a non-repeating art direction, then builds, animates and self-reviews the page.",
+      "version": "0.1.0",
+      "category": "design"
+    }
+  ]
+}

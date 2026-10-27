@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shipit — deploy any static site to the edge in one command</title>
+<meta name="description" content="shipit is an open-source CLI that deploys any static site to the edge in one command, with a preview URL for every git branch and instant rollbacks.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230B0F0C'/%3E%3Cpath d='M8 10l6 6-6 6' stroke='%233DFF8A' stroke-width='3' fill='none'/%3E%3Cpath d='M16 23h8' stroke='%23FFB454' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+<script>if (/[?&]static\b/.test(location.search)) document.documentElement.classList.add('static');</script>
+<style>
+:root {
+  --bg: #0B0F0C; --surface: #111A14; --surface-2: #16231B; --ink: #D6F5DE; --muted: #86A38E;
+  --line: #22322A; --accent: #3DFF8A; --accent-2: #FFB454;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --display: "Space Grotesk", "JetBrains Mono", system-ui, sans-serif;
+  /* ratio 1.2 */
+  --s-1: .833rem; --s0: 1rem; --s1: 1.2rem; --s2: 1.44rem; --s3: 1.728rem; --s4: 2.074rem; --s5: 2.488rem;
+  --hero: clamp(2.6rem, 5.4vw + .6rem, 4.9rem);
+  --r-sm: 4px; --r-lg: 10px;
+  --gutter: clamp(16px, 4vw, 48px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--s0)/1.6 var(--mono); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { text-wrap: pretty; margin: 0; }
+a { color: inherit; }
+code, kbd { font-family: var(--mono); }
+::selection { background: var(--accent); color: var(--bg); }
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
+.muted { color: var(--muted); }
+.acc { color: var(--accent); }
+.amb { color: var(--accent-2); }
+.label { font-size: var(--s-1); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--bg); padding: 8px 16px; z-index: 50; }
+.skip:focus { left: 8px; }
+
+/* hover language: inverse "selection" block */
+.sel { text-decoration: none; padding: 2px 4px; margin: -2px -4px; border-radius: var(--r-sm); transition: background-color .15s, color .15s; }
+.sel:hover { background: var(--accent); color: var(--bg); }
+.sel:active { background: var(--accent-2); color: var(--bg); }
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: var(--r-sm); }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 20px; border-radius: var(--r-sm);
+  font: 500 var(--s0)/1 var(--mono); text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background-color .15s, color .15s, transform .15s; }
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: var(--ink); }
+.btn-primary:active { transform: translateY(1px); background: var(--accent-2); }
+.btn-ghost { color: var(--ink); border-color: var(--line); background: transparent; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost:active { transform: translateY(1px); }
+
+/* copy-to-clipboard install command — the primary CTA */
+.install { display: inline-flex; align-items: stretch; border: 1px solid var(--accent); border-radius: var(--r-sm); background: var(--surface); max-width: 100%; }
+.install code { display: flex; align-items: center; padding: 0 16px 0 18px; min-height: 52px; font-size: var(--s1); white-space: nowrap; }
+.install code::before { content: "$"; color: var(--muted); margin-right: 12px; }
+.copy { display: inline-flex; align-items: center; gap: 8px; border: 0; border-left: 1px solid var(--accent); background: var(--accent); color: var(--bg);
+  font: 700 var(--s-1)/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 0 18px; min-width: 112px; justify-content: center; cursor: pointer; transition: background-color .15s; }
+.copy:hover { background: var(--ink); }
+.copy:active { background: var(--accent-2); }
+.copy svg { width: 16px; height: 16px; }
+.copy .tick { display: none; }
+.copy.done .tick { display: inline; }
+.copy.done .clip { display: none; }
+
+/* header */
+header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--s1); text-decoration: none; min-height: 44px; }
+.logo b { color: var(--accent); }
+.logo .cur { width: .55em; height: 1.05em; background: var(--accent-2); display: inline-block; animation: blink 1.1s steps(1) infinite; }
+nav ul { list-style: none; display: flex; gap: 28px; margin: 0; padding: 0; align-items: center; }
+nav a.sel { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; margin: 0; color: var(--muted); }
+nav a.sel:hover { color: var(--bg); }
+.menu-btn { display: none; }
+
+/* panes */
+.pane { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+.bar { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2); font-size: var(--s-1); color: var(--muted); }
+.bar .dots { display: flex; gap: 6px; }
+.bar .dots i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--muted); }
+.bar .ttl { flex: 1; text-align: center; }
+.bar .tag { color: var(--accent); }
+.body { padding: 20px; font-size: .95rem; line-height: 1.75; }
+.ln { display: block; white-space: pre-wrap; word-break: break-word; min-height: 1.75em; }
+.ps { color: var(--muted); }
+.ps b { color: var(--accent-2); font-weight: 500; }
+.caret { display: inline-block; width: .6em; height: 1.15em; background: var(--accent); vertical-align: -0.2em; margin-left: 1px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* hero */
+.hero { padding: clamp(48px, 8vw, 112px) 0 clamp(56px, 8vw, 104px); position: relative; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { font: 600 var(--hero)/1.02 var(--display); letter-spacing: -.035em; margin: 20px 0 24px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { font-size: var(--s1); color: var(--muted); max-width: 46ch; line-height: 1.6; }
+.hero .lede strong { color: var(--ink); font-weight: 500; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 36px; align-items: center; }
+.hero .fine { margin-top: 18px; font-size: var(--s-1); color: var(--muted); }
+.hero .term { box-shadow: 0 0 0 1px rgba(61,255,138,.06), 0 30px 80px -30px rgba(61,255,138,.18); position: relative; }
+.hero .term .body { min-height: 372px; }
+.scan { position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(214,245,222,.05) 0 1px, transparent 1px 3px); opacity: 0; }
+.scan.run { animation: flicker .9s steps(6) 1; }
+@keyframes flicker { 0% { opacity: .9 } 30% { opacity: .2 } 50% { opacity: .7 } 100% { opacity: 0 } }
+
+/* ascii divider */
+.ascii { color: #3A5444; font-size: var(--s-1); white-space: nowrap; overflow: hidden; user-select: none; padding: 0 var(--gutter); }
+
+/* stats strip — dense */
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats dl { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
+.stats div { padding: 28px var(--gutter); border-left: 1px solid var(--line); }
+.stats div:first-child { border-left: 0; }
+.stats dt { font-size: var(--s-1); color: var(--muted); margin-top: 6px; }
+.stats dd { margin: 0; font-size: var(--s4); font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1.1; }
+.stats dd small { font-size: var(--s1); color: var(--accent); font-weight: 500; margin-left: 4px; }
+
+/* sections */
+section.blk { padding: clamp(72px, 10vw, 136px) 0; }
+.head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; margin-bottom: 48px; align-items: baseline; }
+.head h2 { font-size: clamp(1.728rem, 2.6vw + .6rem, 2.986rem); line-height: 1.12; letter-spacing: -.025em; font-weight: 700; max-width: 22ch; }
+.head .label { grid-column: 1; grid-row: 1; padding-top: .6em; }
+.head h2 { grid-column: 2; }
+.head p:not(.label) { grid-column: 2; color: var(--muted); max-width: 62ch; margin-top: 16px; }
+
+/* steps — numbered rows */
+.steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.steps li { display: grid; grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.steps .n { font-size: var(--s3); color: var(--accent-2); font-weight: 700; }
+.steps h3 { font-size: var(--s2); font-weight: 500; }
+.steps h3 code { color: var(--accent); }
+.steps p { color: var(--muted); margin-top: 8px; max-width: 46ch; }
+.out { font-size: .9rem; line-height: 1.7; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 14px 16px; white-space: pre-wrap; word-break: break-word; }
+
+/* previews split */
+.split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.split h2 { font-size: clamp(1.728rem, 2.6vw + .6rem, 2.986rem); line-height: 1.12; letter-spacing: -.025em; margin: 16px 0 20px; }
+.split p { color: var(--muted); max-width: 46ch; }
+.split p + p { margin-top: 16px; }
+table.br { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.br th { text-align: left; font-weight: 500; color: var(--muted); font-size: var(--s-1); letter-spacing: .1em; text-transform: uppercase; padding: 12px 20px; border-bottom: 1px solid var(--line); }
+.br td { padding: 14px 20px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.br tr:last-child td { border-bottom: 0; }
+.br .b { color: var(--accent-2); white-space: nowrap; }
+.br a.sel { color: var(--ink); word-break: break-all; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; }
+.dot.busy { background: var(--accent-2); animation: blink 1s steps(1) infinite; }
+
+/* rollback — full-bleed band */
+.band { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.band .split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.band h2 { font-size: clamp(1.44rem, 1.6vw + .6rem, 2.074rem); max-width: 24ch; }
+.big { font-size: clamp(4rem, 12vw, 10rem); font-weight: 700; letter-spacing: -.05em; line-height: .9; color: var(--accent); }
+.big small { font-size: .28em; color: var(--muted); letter-spacing: -.01em; font-weight: 400; }
+.band .pane { background: var(--bg); }
+
+/* quiet line */
+.quiet { padding: clamp(96px, 16vw, 200px) 0; }
+.quiet p { font-size: clamp(1.44rem, 2.4vw + .4rem, 2.488rem); line-height: 1.3; letter-spacing: -.02em; max-width: 30ch; }
+.quiet code { color: var(--accent); white-space: nowrap; }
+
+/* frameworks */
+.fw { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 32px; font-size: var(--s1); }
+.fw span::before { content: "▸ "; color: var(--accent-2); }
+
+/* final cta */
+.cta .pane { max-width: 880px; }
+.cta .body { padding: clamp(28px, 5vw, 56px); }
+.cta h2 { font-size: clamp(2.074rem, 3.6vw + .5rem, 3.583rem); line-height: 1.05; letter-spacing: -.03em; margin: 8px 0 20px; }
+.cta p { color: var(--muted); max-width: 52ch; margin-bottom: 32px; }
+.cta .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+/* footer */
+footer { border-top: 1px solid var(--line); padding: 56px 0 40px; font-size: var(--s-1); }
+.fgrid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
+.fgrid pre { margin: 0; color: var(--accent); font-size: 11px; line-height: 1.15; }
+.fgrid h3 { font-size: var(--s-1); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 12px; }
+.fgrid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.fgrid ul a.sel { display: inline-flex; min-height: 32px; align-items: center; }
+.exit { margin-top: 48px; padding-top: 20px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); }
+
+/* reveal (JS adds .js; ?static or reduced motion skips) */
+.js:not(.static) [data-reveal] { opacity: 0; transform: translateY(24px); }
+
+@media (max-width: 960px) {
+  .hero .wrap, .split, .band .split { grid-template-columns: 1fr; }
+  .head { grid-template-columns: 1fr; gap: 12px; }
+  .head .label, .head h2, .head p:not(.label) { grid-column: 1; grid-row: auto; padding-top: 0; }
+  .steps li { grid-template-columns: 1fr; gap: 12px; }
+  .stats dl { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(3) { border-left: 0; }
+  .stats div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .fgrid { grid-template-columns: 1fr 1fr; }
+  .fgrid > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .menu-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 12px; background: transparent; color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--r-sm); font: 500 var(--s-1) var(--mono); cursor: pointer; }
+  .menu-btn:hover { border-color: var(--accent); color: var(--accent); }
+  nav ul { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px var(--gutter) 16px; }
+  nav.open ul { display: flex; }
+  nav ul li a.sel { width: 100%; padding: 0 8px; }
+  .install code { font-size: var(--s0); padding: 0 12px; }
+  .copy { min-width: 88px; padding: 0 12px; }
+  .hero .term .body { min-height: 0; font-size: .8rem; padding: 16px; }
+  .body { padding: 16px; }
+  .br th:nth-child(3), .br td:nth-child(3) { display: none; }
+  .br thead { display: none; }
+  .br tr { display: block; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .br tr:last-child { border-bottom: 0; }
+  .br td { display: block; padding: 2px 0 !important; border: 0; }
+  .br a.sel { word-break: normal; overflow-wrap: anywhere; font-size: .82rem; }
+  .hm { display: none; }
+  .br th, .br td { padding: 12px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="shipit home"><b>~/</b>shipit<span class="cur" aria-hidden="true"></span></a>
+    <nav id="nav" aria-label="Primary">
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-list">menu</button>
+      <ul id="nav-list">
+        <li><a class="sel" href="#how">how it works</a></li>
+        <li><a class="sel" href="#previews">previews</a></li>
+        <li><a class="sel" href="#rollback">rollbacks</a></li>
+        <li><a class="sel" href="#docs">docs</a></li>
+        <li><a class="sel" href="#source">source</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div>
+        <p class="label">open source · MIT · v2.4.0</p>
+        <h1 id="hero-h">Your static site, on the edge, in <em>one command.</em></h1>
+        <p class="lede"><strong>shipit</strong> builds your folder, pushes it to 38 edge regions and hands back a URL. Every git branch gets its own preview. Every deploy can be undone in under a second.</p>
+        <div class="ctas">
+          <div class="install">
+            <code>npm i -g shipit</code>
+            <button class="copy" data-copy="npm i -g shipit" aria-label="Copy install command">
+              <svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>
+              <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+              <span class="copy-t">copy</span>
+            </button>
+          </div>
+          <a class="btn btn-ghost" href="#docs">Read the 5-minute guide</a>
+        </div>
+        <p class="fine">Node 18+. Works with any folder of HTML, CSS and JS.</p>
+      </div>
+
+      <div class="pane term" role="img" aria-label="Terminal: installing shipit and deploying a site to portfolio.shipit.page in 4.2 seconds">
+        <div class="bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">~/sites/portfolio — zsh</span><span class="tag">main</span></div>
+        <div class="body" id="typer" aria-hidden="true">
+          <span class="ln" data-cmd="npm i -g shipit"><span class="ps"><b>~/sites/portfolio</b> $ </span><span class="t">npm i -g shipit</span></span>
+          <span class="ln muted">added 1 package in 2.1s</span>
+          <span class="ln" data-cmd="shipit deploy"><span class="ps"><b>~/sites/portfolio</b> $ </span><span class="t">shipit deploy</span></span>
+          <span class="ln"><span class="muted">›</span> detected   astro · output ./dist</span>
+          <span class="ln"><span class="muted">›</span> build      done in 3.1s</span>
+          <span class="ln"><span class="muted">›</span> upload     31 changed · 183 unchanged (skipped)</span>
+          <span class="ln"><span class="muted">›</span> propagate  38 / 38 regions</span>
+          <span class="ln acc">✔ live       https://portfolio.shipit.page</span>
+          <span class="ln muted">  4.2s · deploy d-7f3a91</span>
+          <span class="ln" data-cmd=""><span class="ps"><b>~/sites/portfolio</b> $ </span><span class="t"></span></span>
+        </div>
+        <div class="scan" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats" data-reveal>
+    <dl>
+      <div><dd>4.2<small>s</small></dd><dt>median deploy, cache warm</dt></div>
+      <div><dd>38</dd><dt>edge regions, one upload</dt></div>
+      <div><dd>0</dd><dt>config files required</dt></div>
+      <div><dd>&lt;1<small>s</small></dd><dt>to roll back any deploy</dt></div>
+    </dl>
+  </div>
+
+  <section class="blk" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <p class="label">// how it works</p>
+        <h2 id="how-h">Three commands cover the whole workflow.</h2>
+        <p>shipit reads your <code>package.json</code>, finds the build output and does the rest. There is no project to create first and nothing to click.</p>
+      </div>
+      <ol class="steps">
+        <li data-reveal>
+          <span class="n">01</span>
+          <div><h3><code>shipit deploy</code></h3><p>Detects Astro, Vite, Eleventy, Hugo, a static Next export or a plain folder. Only changed files are uploaded, so the second deploy is faster than the first.</p></div>
+          <div class="out"><span class="muted">$</span> shipit deploy
+<span class="muted">›</span> upload  3 changed · 211 unchanged
+<span class="acc">✔ live    https://portfolio.shipit.page</span></div>
+        </li>
+        <li data-reveal>
+          <span class="n">02</span>
+          <div><h3><code>git push</code></h3><p>Connect the repo once with <code>shipit link</code>. From then on every branch you push gets its own URL, posted as a comment on the pull request.</p></div>
+          <div class="out"><span class="muted">$</span> git push origin feat/dark-mode
+<span class="amb">↳ preview</span> https://feat-dark-mode.portfolio.shipit.page</div>
+        </li>
+        <li data-reveal>
+          <span class="n">03</span>
+          <div><h3><code>shipit rollback</code></h3><p>Every deploy is kept, immutable. Going back points the domain at an older one. Nothing is rebuilt, nothing is re-uploaded.</p></div>
+          <div class="out"><span class="muted">$</span> shipit rollback
+<span class="muted">›</span> production → d-2c09e4 (yesterday 18:42)
+<span class="acc">✔ rolled back in 0.31s</span></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="ascii" aria-hidden="true">+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</div>
+
+  <section class="blk" id="previews" aria-labelledby="prev-h">
+    <div class="wrap split">
+      <div data-reveal>
+        <p class="label">// preview urls</p>
+        <h2 id="prev-h">Every branch is a live link your reviewer can open.</h2>
+        <p>Designers check the real thing instead of a screenshot. QA tests on a URL that matches production byte for byte. Delete the branch and the preview goes with it.</p>
+        <p>Previews are <code class="amb">noindex</code> by default and can sit behind a shared password.</p>
+      </div>
+      <div class="pane" data-reveal>
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ttl">shipit ls --previews</span><span class="tag">4 live</span></div>
+        <table class="br">
+          <thead><tr><th scope="col">branch</th><th scope="col">url</th><th scope="col">age</th></tr></thead>
+          <tbody>
+            <tr><td class="b"><span class="dot"></span>main</td><td><a class="sel" href="#previews">portfolio.shipit.page</a></td><td class="muted">2m</td></tr>
+            <tr><td class="b"><span class="dot"></span>feat/dark-mode</td><td><a class="sel" href="#previews">feat-dark-mode.portfolio.shipit.page</a></td><td class="muted">14m</td></tr>
+            <tr><td class="b"><span class="dot busy"></span>fix/nav-focus</td><td class="muted">building… 2.4s</td><td class="muted">now</td></tr>
+            <tr><td class="b"><span class="dot"></span>copy/pricing-v2</td><td><a class="sel" href="#previews">copy-pricing-v2.portfolio.shipit.page</a></td><td class="muted">3d</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk band" id="rollback" aria-labelledby="rb-h">
+    <div class="wrap split">
+      <div class="pane" data-reveal>
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ttl">shipit history</span><span class="tag">production</span></div>
+        <div class="body">
+          <span class="ln"><span class="acc">●</span> d-7f3a91  <span class="muted">today 09:12</span><span class="hm">   main</span>  <span class="acc">← live</span></span>
+          <span class="ln"><span class="muted">○</span> d-2c09e4  <span class="muted">yest. 18:42</span><span class="hm">  main</span></span>
+          <span class="ln"><span class="muted">○</span> d-91be07  <span class="muted">yest. 11:05</span><span class="hm">  main</span></span>
+          <span class="ln"><span class="muted">○</span> d-4d1f3c  <span class="muted">mon 16:30</span><span class="hm">    main</span></span>
+          <span class="ln"> </span>
+          <span class="ln"><span class="ps"><b>~/sites/portfolio</b> $ </span>shipit rollback d-2c09e4</span>
+          <span class="ln acc">✔ production → d-2c09e4 in 0.31s</span>
+        </div>
+      </div>
+      <div data-reveal>
+        <p class="label">// instant rollbacks</p>
+        <div class="big" aria-hidden="true">0.31<small>s</small></div>
+        <h2 id="rb-h">Shipped a typo to production? It is gone before you finish reading this sentence.</h2>
+        <p>A rollback swaps a pointer at the edge. Old deploys stay cached in every region, so the previous version is served straight away.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiet" aria-label="Philosophy">
+    <div class="wrap">
+      <p data-reveal>No dashboard to learn. <code>shipit --help</code> fits on one screen, and that is the whole manual.</p>
+    </div>
+  </section>
+
+  <div class="ascii" aria-hidden="true">+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</div>
+
+  <section class="blk" id="docs" aria-labelledby="fw-h">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <p class="label">// works with</p>
+        <h2 id="fw-h">If it builds to a folder, shipit can ship it.</h2>
+        <p>No adapters and no plugins. Point it at a custom output folder with <code>shipit deploy ./out</code> if detection guesses wrong.</p>
+      </div>
+      <div class="fw" data-reveal>
+        <span>Astro</span><span>Vite</span><span>Eleventy</span><span>Hugo</span><span>Jekyll</span><span>SvelteKit static</span><span>Next.js export</span><span>plain HTML</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk cta" id="install" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="pane" data-reveal>
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ttl">~ — zsh</span><span class="tag">ready</span></div>
+        <div class="body">
+          <p class="label">// your turn</p>
+          <h2 id="cta-h">Install once. Deploy in the next minute.</h2>
+          <p>Free and open source. Bring your own domain, or use the free <code>*.shipit.page</code> subdomain while you decide.</p>
+          <div class="row">
+            <div class="install">
+              <code>npm i -g shipit</code>
+              <button class="copy" data-copy="npm i -g shipit" aria-label="Copy install command">
+                <svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>
+                <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+                <span class="copy-t">copy</span>
+              </button>
+            </div>
+            <a class="btn btn-ghost" href="#source">Browse the source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="source">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+<pre aria-hidden="true">     _     _       _ _
+ ___| |__ (_)_ __ (_) |_
+/ __| '_ \| | '_ \| | __|
+\__ \ | | | | |_) | | |_
+|___/_| |_|_| .__/|_|\__|
+            |_|</pre>
+        <p class="muted" style="margin-top:16px;max-width:36ch">An open-source CLI for putting static sites on the edge. Maintained by volunteers, MIT licensed.</p>
+      </div>
+      <div><h3>use</h3><ul><li><a class="sel" href="#docs">docs</a></li><li><a class="sel" href="#how">quick start</a></li><li><a class="sel" href="#docs">cli reference</a></li></ul></div>
+      <div><h3>project</h3><ul><li><a class="sel" href="#source">source code</a></li><li><a class="sel" href="#source">changelog</a></li><li><a class="sel" href="#source">roadmap</a></li></ul></div>
+      <div><h3>talk</h3><ul><li><a class="sel" href="#source">discussions</a></li><li><a class="sel" href="#source">report a bug</a></li><li><a class="sel" href="#source">security</a></li></ul></div>
+    </div>
+    <div class="exit"><span><span class="acc">$</span> exit 0</span><span>shipit v2.4.0 · MIT</span></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const root = document.documentElement;
+  const isStatic = root.classList.contains('static');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animate = !isStatic && !reduce;
+  if (animate) root.classList.add('js');
+
+  // mobile menu
+  const nav = document.getElementById('nav'), mb = nav.querySelector('.menu-btn');
+  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); mb.textContent = o ? 'close' : 'menu'; });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); mb.textContent = 'menu'; }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { mb.click(); mb.focus(); } });
+
+  // copy buttons with success tick
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); } catch (_) { /* clipboard blocked: still show state */ }
+    b.classList.add('done'); b.querySelector('.copy-t').textContent = 'copied';
+    setTimeout(() => { b.classList.remove('done'); b.querySelector('.copy-t').textContent = 'copy'; }, 1800);
+  }));
+
+  // hero terminal typewriter (HTML holds the final state; JS replays it)
+  const typer = document.getElementById('typer');
+  const lines = [...typer.querySelectorAll('.ln')];
+  const caret = Object.assign(document.createElement('span'), { className: 'caret' });
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  async function type(el, text, ms = 55) { for (const c of text) { el.textContent += c; await wait(ms + Math.random() * 40); } }
+  async function play() {
+    document.querySelector('.scan').classList.add('run');
+    lines.forEach(l => { l.hidden = true; const t = l.querySelector('.t'); if (t) { l.dataset.full = t.textContent; t.textContent = ''; } });
+    for (const l of lines) {
+      l.hidden = false;
+      const t = l.querySelector('.t');
+      if (t) { t.after(caret); await wait(500); await type(t, l.dataset.full); await wait(350); }
+      else await wait(l.classList.contains('acc') ? 600 : 260);
+    }
+  }
+  if (animate) play(); else lines[lines.length - 1].querySelector('.t').after(caret);
+
+  // scroll: batch reveal
+  if (animate && window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true,
+      onEnter: els => gsap.to(els, { y: 0, opacity: 1, duration: .7, ease: 'power2.out', stagger: .08 }) });
+  } else root.classList.remove('js');
+})();
+</script>
+</body>
+</html>

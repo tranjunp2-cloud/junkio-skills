@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mây Roastery — Single-origin Arabica from Da Lat</title>
+<meta name="description" content="Mây Roastery roasts single-origin Arabica from farms around Da Lat, ships to Ho Chi Minh City and Hanoi, and runs weekend cupping sessions. Book a seat.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M46 10c9 7 14 19 12 31-3 12-14 20-27 19C18 59 7 50 6 37 5 24 14 12 26 8c7-2 15-2 20 2z' fill='%234E6A2F'/%3E%3Cpath d='M22 34c6-6 14-6 20 0' stroke='%23F3EFE6' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400,100;1,9..144,400,100&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3EFE6; --surface:#E6DFCF; --ink:#2C3324; --muted:#575E4C;
+  --accent:#4E6A2F; --accent-ink:#F3EFE6; --accent-2:#9A5224;
+  --leaf-1:#8FA06B; --leaf-2:#6E8547; --sky:#EADCC4; --sun:#D9A272;
+  --on-dark-muted:#B9B8A4;
+  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* modular scale, ratio 1.333 */
+  --step--1:.844rem; --step-0:1.0625rem; --step-1:1.416rem; --step-2:1.888rem;
+  --step-3:clamp(2rem,1.4rem + 2.4vw,2.52rem);
+  --step-4:clamp(2.4rem,1.5rem + 3.6vw,3.36rem);
+  --step-5:clamp(2.7rem,1.2rem + 5.6vw,4.48rem);
+  --step-6:clamp(2.5rem,.9rem + 7.4vw,5.97rem);
+  --r-soft:28px; --r-pill:999px;
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s6:48px; --s8:64px; --s12:96px; --s16:128px;
+  --gutter:clamp(20px,5vw,72px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{position:relative;margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:var(--step-0);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:100;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .2 0 0 0 0 .14 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;font-variation-settings:'SOFT' 100;line-height:1.04;letter-spacing:-.025em;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.label{font-size:var(--step--1);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.wrap{padding-inline:var(--gutter)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:var(--r-pill);z-index:200}
+.skip:focus{left:16px}
+:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px;border-radius:6px}
+
+/* buttons + links: hover language = drawn squiggle underline, 2px lift on pills */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 28px;border-radius:var(--r-pill);font:700 var(--step-0)/1 var(--font-body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#435C28;transform:translateY(-2px);box-shadow:0 6px 0 -2px rgba(44,51,36,.18)}
+.btn-primary:active{transform:translateY(1px);box-shadow:none}
+.btn svg{width:20px;height:20px}
+.link{position:relative;display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-decoration:none;padding-bottom:6px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c20-4 38 2 58-1s40-3 60 0' stroke='%239A5224' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") left bottom/0 7px no-repeat;
+  transition:background-size .35s ease}
+.link:hover,.link:focus-visible{background-size:100% 7px}
+.link:active{color:var(--accent-2)}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid rgba(44,51,36,.12)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
+.brand{display:flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font-family:var(--font-display);font-size:var(--step-1);letter-spacing:-.02em}
+.brand svg{width:34px;height:34px}
+.nav-links{display:flex;align-items:center;gap:var(--s4);list-style:none;margin:0;padding:0}
+.nav .btn{min-height:44px;padding:0 20px;font-size:var(--step--1)}
+.menu-btn{display:none;min-width:44px;min-height:44px;border:2px solid var(--ink);border-radius:var(--r-pill);background:transparent;color:var(--ink);font:700 var(--step--1) var(--font-body);padding:0 16px;cursor:pointer}
+.menu-btn:active{background:var(--surface)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:var(--s6);padding-block:var(--s8) var(--s12);min-height:calc(100vh - 72px)}
+.hero h1{font-size:var(--step-6);margin-top:var(--s3)}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.2em;margin-bottom:-.14em}
+.hero h1 .line>span{display:inline-block}
+.scribble{position:relative;white-space:nowrap;color:var(--accent)}
+.scribble svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.32em;overflow:visible}
+.hero-lede{max-width:34ch;font-size:var(--step-1);line-height:1.45;color:var(--muted);margin-top:var(--s4)}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-top:var(--s6)}
+.hero-note{margin-top:var(--s3);font-size:var(--step--1);color:var(--muted)}
+
+/* layout signature: blob figure + hand-drawn annotation */
+.blob-fig{position:relative;margin:0}
+.blob-fig>svg.art{width:100%;height:auto;aspect-ratio:1/1}
+.annot{position:absolute;display:flex;gap:6px;align-items:flex-start;font-family:var(--font-display);font-style:italic;font-size:var(--step-1);line-height:1.2;color:var(--ink)}
+.annot span{width:max-content;max-width:12ch}
+.annot svg{flex:none;overflow:visible}
+.annot path{fill:none;stroke:var(--accent-2);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.hero .annot{left:-15%;bottom:6%}
+.hero .annot-2{left:auto;right:-2%;top:2%;bottom:auto;flex-direction:row-reverse;text-align:right}
+
+/* facts strip — dense */
+.facts{background:var(--ink);color:var(--bg)}
+.facts ul{display:grid;grid-template-columns:repeat(4,1fr);list-style:none;margin:0;padding-block:var(--s6)}
+.facts li{padding:var(--s1) var(--s3);border-left:1px solid rgba(243,239,230,.22)}
+.facts li:first-child{border-left:0;padding-left:0}
+.facts strong{display:block;font:400 var(--step-3)/1.05 var(--font-display);letter-spacing:-.02em}
+.facts span{display:block;margin-top:6px;color:var(--on-dark-muted);font-size:var(--step--1)}
+
+/* beans — numbered rows */
+.beans{padding-block:var(--s16) var(--s12)}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:end;margin-bottom:var(--s8)}
+.section-head h2{font-size:var(--step-5)}
+.section-head p{max-width:46ch;color:var(--muted)}
+.bean-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.bean{display:grid;grid-template-columns:72px 1.3fr 1.4fr 1fr 130px;gap:var(--s3);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid rgba(44,51,36,.22);transition:background-color .25s ease}
+.bean:hover{background:color-mix(in srgb,var(--surface) 55%,transparent)}
+.bean-no{font:400 var(--step-2)/1 var(--font-display);color:var(--accent-2)}
+.bean h3{font-size:var(--step-2)}
+.bean-meta{font-size:var(--step--1);color:var(--muted);margin-top:4px}
+.notes{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.notes li{padding:4px 12px;border:1.5px solid var(--ink);border-radius:var(--r-pill);font-size:var(--step--1);font-weight:500}
+.bean-proc{font-size:var(--step--1);color:var(--muted)}
+.bean-proc b{display:block;color:var(--ink);font-size:var(--step-0)}
+.price{font:400 var(--step-1)/1 var(--font-display);text-align:right}
+.price small{display:block;font:500 var(--step--1)/1.4 var(--font-body);color:var(--muted)}
+.beans-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);margin-top:var(--s4);color:var(--muted);font-size:var(--step--1)}
+
+/* story — asymmetric two-column with drawn path */
+.story{display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--s12);align-items:center;padding-block:var(--s12);background:var(--surface)}
+.story h2{font-size:var(--step-4);max-width:14ch}
+.story-intro{max-width:52ch;margin-top:var(--s3);color:var(--muted)}
+.steps{position:relative;margin:var(--s8) 0 0;padding-left:56px}.steps ol{list-style:none;margin:0;padding:0}
+.steps>svg{position:absolute;left:0;top:6px;width:40px;height:calc(100% - 12px)}
+.steps>svg path{fill:none;stroke:var(--accent-2);stroke-width:2.4;stroke-linecap:round}
+.steps li{position:relative;padding-bottom:var(--s4)}
+.steps li::before{content:"";position:absolute;left:-44px;top:10px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:2.5px solid var(--accent)}
+.steps .day{font-size:var(--step--1);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.steps h3{font-size:var(--step-1);margin-top:2px}
+.steps p{color:var(--muted);max-width:50ch;margin-top:4px}
+.story .annot{right:2%;bottom:-2%}
+
+/* breathing line */
+.quiet{padding-block:var(--s16)}
+.quiet p{font:400 var(--step-5)/1.08 var(--font-display);letter-spacing:-.03em;max-width:18ch;margin-left:clamp(0px,18vw,320px);text-wrap:balance}
+.quiet .label{display:block;margin:var(--s4) 0 0 clamp(0px,18vw,320px)}
+
+/* cupping */
+.cupping{display:grid;grid-template-columns:1fr 1fr;gap:var(--s12);padding-block:var(--s8) var(--s16);align-items:start}
+.cupping h2{font-size:var(--step-5);margin-top:var(--s2)}
+.cupping-lede{max-width:44ch;color:var(--muted);margin-top:var(--s3)}
+.sched{display:grid;grid-template-columns:auto 1fr;gap:12px var(--s4);margin:var(--s6) 0 0;padding:var(--s4) 0 0;border-top:2px solid var(--ink)}
+.sched dt{font-weight:700}
+.sched dd{margin:0;color:var(--muted)}
+.cupping .blob-fig{max-width:440px;margin-top:var(--s6)}
+.cupping .annot{right:-36%;top:4%}
+.book{scroll-margin-top:96px;background:var(--surface);border-radius:var(--r-soft);padding:clamp(24px,4vw,48px);position:sticky;top:96px}
+.book h3{font-size:var(--step-3)}
+.book>p{color:var(--muted);margin-top:var(--s1)}
+.field{display:grid;gap:6px;margin-top:var(--s3)}
+.field label,.field legend{font-weight:700;font-size:var(--step--1)}
+.field input,.field select{min-height:52px;width:100%;padding:0 16px;border:1.5px solid var(--ink);border-radius:var(--r-pill);background:var(--bg);color:var(--ink);font:inherit}
+.field input:focus-visible,.field select:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
+fieldset.field{border:0;padding:0;margin-inline:0}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1)}
+.slot input{position:absolute;opacity:0;width:1px;height:1px}
+.slot span{display:flex;flex-direction:column;justify-content:center;min-height:60px;padding:8px 16px;border:1.5px solid var(--ink);border-radius:var(--r-pill);cursor:pointer;font-size:var(--step--1);line-height:1.3;transition:background-color .2s ease}
+.slot span b{font-size:var(--step-0)}
+.slot span:hover{background:var(--bg)}
+.slot input:checked+span{background:var(--ink);color:var(--bg)}
+.slot input:focus-visible+span{outline:3px solid var(--accent-2);outline-offset:2px}
+.slot input:disabled+span{opacity:.5;cursor:not-allowed;text-decoration:line-through}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.book .btn{width:100%;justify-content:center;margin-top:var(--s4)}
+.book-msg{margin-top:var(--s2);font-size:var(--step--1);color:var(--muted);min-height:1.6em}
+.book-msg.ok{color:var(--accent);font-weight:700}
+
+/* footer */
+.site-footer{background:var(--ink);color:var(--bg);padding-block:var(--s12) var(--s4);position:relative;overflow:hidden}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s6)}
+.foot-grid h2{font-size:var(--step-3);max-width:12ch}
+.foot-grid h3{font:700 var(--step--1)/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-muted);margin-bottom:var(--s2)}
+.foot-grid p,.foot-grid li{color:var(--bg);font-size:var(--step--1)}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.foot-grid a{display:inline-flex;min-height:44px;align-items:center}
+.foot-word{font:400 clamp(5rem,22vw,20rem)/.8 var(--font-display);letter-spacing:-.05em;color:#3A4330;margin-top:var(--s8);white-space:nowrap}
+.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2);border-top:1px solid rgba(243,239,230,.2);padding-top:var(--s3);margin-top:var(--s2);color:var(--on-dark-muted);font-size:var(--step--1)}
+.site-footer .link{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c20-4 38 2 58-1s40-3 60 0' stroke='%23D9A272' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+
+/* responsive */
+@media (max-width:1100px){
+  .bean{grid-template-columns:56px 1fr 1fr;row-gap:var(--s2)}
+  .bean .notes{grid-column:2/4}.bean-proc{grid-column:2/3}.price{grid-column:3/4}
+}
+@media (max-width:900px){
+  .hero,.story,.cupping,.section-head{grid-template-columns:1fr}
+  .hero{min-height:0;padding-block:var(--s6) var(--s8);gap:var(--s4)}
+  .hero .blob-fig{max-width:460px;width:92%;margin-inline:auto}
+  .story{gap:var(--s6)}.story .blob-fig{max-width:380px;width:86%}
+  .facts ul{grid-template-columns:1fr 1fr;row-gap:var(--s4)}
+  .facts li:nth-child(3){border-left:0;padding-left:0}
+  .book{position:static}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid>div:first-child{grid-column:1/-1}
+  .quiet p,.quiet .label{margin-left:0}
+}
+@media (max-width:720px){
+  .menu-btn{display:inline-flex;align-items:center}
+  .nav-links{position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:2px solid var(--ink);padding:var(--s1) var(--gutter) var(--s3);display:none}
+  .nav-links.open{display:flex}
+  .nav-links li a{display:flex;min-height:52px}
+  .nav-links .btn{justify-content:center;margin-top:var(--s1);min-height:52px}
+  .bean{grid-template-columns:44px 1fr;padding:var(--s3) 0}
+  .bean .notes,.bean-proc,.price{grid-column:2/3}
+  .price{text-align:left}
+  .blob-fig .annot{position:static;margin:4px 0 0 8%;font-size:var(--step-0)}
+  .blob-fig .annot span{max-width:22ch}
+  .hero .annot-2{display:none}
+  .cupping .annot svg{transform:scaleY(-1)}
+  .slots,.two{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <clipPath id="blobA" clipPathUnits="objectBoundingBox"><path d="M.62.04C.8.06.92.2.93.38.94.55.9.66.83.78.74.92.56.99.4.95.22.91.05.8.03.6.01.42.12.33.2.22.3.08.45.02.62.04Z"/></clipPath>
+    <clipPath id="blobB" clipPathUnits="objectBoundingBox"><path d="M.52.05C.68.04.86.12.93.28.99.43.92.6.84.73.75.87.6.96.44.95.27.94.11.84.06.68.01.52.07.33.18.2.27.1.4.06.52.05Z"/></clipPath>
+    <clipPath id="blobC" clipPathUnits="objectBoundingBox"><path d="M.18.12C.33.02.6.01.78.08.95.16.99.38.95.55.91.72.97.86.82.94.64 1 .38.97.22.88.06.79.01.6.03.44.05.3.08.19.18.12Z"/></clipPath>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Mây Roastery, home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M29 6c6 4 9 12 8 19-2 8-9 13-17 12C12 36 5 30 4 22 3 14 9 7 16 5c4-1 9-1 13 1z" fill="#4E6A2F"/><path d="M12 22c4-4 12-4 16 0M15 27c3-2 7-2 10 0" stroke="#F3EFE6" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      Mây Roastery
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a class="link" href="#beans">This month's beans</a></li>
+      <li><a class="link" href="#story">How we roast</a></li>
+      <li><a class="link" href="#visit">Visit Da Lat</a></li>
+      <li><a class="btn btn-primary" href="#book">Book a cupping</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div>
+      <p class="label">Specialty roastery · Da Lat, Lâm Đồng</p>
+      <h1 id="hero-title">
+        <span class="line"><span>Arabica grown</span></span>
+        <span class="line"><span>above the <span class="scribble">clouds<svg viewBox="0 0 300 18" preserveAspectRatio="none" aria-hidden="true"><path data-draw="hero" d="M3 12C46 4 92 15 140 8S228 3 297 10" fill="none" stroke="#9A5224" stroke-width="4" stroke-linecap="round"/></svg></span>,</span></span>
+        <span class="line"><span>roasted the week</span></span>
+        <span class="line"><span>it ships.</span></span>
+      </h1>
+      <p class="hero-lede">Mây means cloud. Our beans come from four farms between 1,450 and 1,650 metres around Da Lat, and leave the roaster at most five days before they reach your kettle in Saigon or Hanoi.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#book">Book a weekend cupping
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12c5-1 10 0 15 0M14 6c2 2 4 4 5 6-1 2-3 4-5 6"/></svg></a>
+        <a class="link" href="#beans">See this month's four beans</a>
+      </div>
+      <p class="hero-note">Saturdays & Sundays · 8 seats · 250,000₫ with a 100 g bag to take home</p>
+    </div>
+
+    <figure class="blob-fig" data-parallax>
+      <svg class="art" viewBox="0 0 600 600" role="img" aria-label="Illustration: misty green hills with rows of coffee shrubs under a low sun">
+        <g clip-path="url(#blobA)">
+          <rect width="600" height="600" fill="var(--sky)"/>
+          <circle cx="410" cy="210" r="70" fill="var(--sun)"/>
+          <rect x="60" y="230" width="380" height="22" rx="11" fill="#F3EFE6" opacity=".75"/>
+          <path d="M0 330C90 270 170 300 250 280S430 220 600 270V600H0Z" fill="var(--leaf-1)"/>
+          <rect x="200" y="300" width="420" height="26" rx="13" fill="#F3EFE6" opacity=".6"/>
+          <path d="M0 400C110 350 220 390 330 360S500 330 600 360V600H0Z" fill="var(--leaf-2)"/>
+          <path d="M0 470C120 430 260 470 380 440S540 430 600 450V600H0Z" fill="var(--accent)"/>
+          <g fill="var(--ink)" opacity=".55">
+            <circle cx="70" cy="500" r="10"/><circle cx="120" cy="492" r="10"/><circle cx="170" cy="486" r="10"/><circle cx="220" cy="482" r="10"/><circle cx="270" cy="478" r="10"/><circle cx="320" cy="472" r="10"/><circle cx="370" cy="466" r="10"/><circle cx="420" cy="462" r="10"/><circle cx="470" cy="460" r="10"/><circle cx="520" cy="460" r="10"/>
+            <circle cx="50" cy="550" r="12"/><circle cx="110" cy="544" r="12"/><circle cx="170" cy="538" r="12"/><circle cx="230" cy="534" r="12"/><circle cx="290" cy="530" r="12"/><circle cx="350" cy="524" r="12"/><circle cx="410" cy="520" r="12"/><circle cx="470" cy="518" r="12"/><circle cx="530" cy="518" r="12"/>
+          </g>
+          <path d="M0 560C150 540 300 580 600 540V600H0Z" fill="var(--ink)"/>
+        </g>
+      </svg>
+      <figcaption class="annot">
+        <svg width="58" height="48" viewBox="0 0 58 48" aria-hidden="true"><path data-draw="hero" d="M4 44C10 26 26 12 52 8M42 2l10 6-8 9"/></svg>
+        <span>Cầu Đất,<br>1,550 m</span>
+      </figcaption>
+      <p class="annot annot-2" aria-hidden="true">
+        <svg width="52" height="44" viewBox="0 0 52 44"><path data-draw="hero" d="M48 4C40 22 26 34 6 38M14 30l-8 8 10 4"/></svg>
+        <span>fog until 9 a.m. most days</span>
+      </p>
+    </figure>
+  </section>
+
+  <section class="facts" aria-label="Mây Roastery in numbers">
+    <ul class="wrap">
+      <li data-reveal><strong>4 farms</strong><span>bought from directly, named on every bag</span></li>
+      <li data-reveal><strong>Tue & Fri</strong><span>roast days — we never ship stock older than 5 days</span></li>
+      <li data-reveal><strong>2 days</strong><span>to Ho Chi Minh City, 3 days to Hanoi, free over 500,000₫</span></li>
+      <li data-reveal><strong>250 g</strong><span>bags only, with a valve and a recipe card for V60 & AeroPress</span></li>
+    </ul>
+  </section>
+
+  <section class="beans wrap" id="beans" aria-labelledby="beans-title">
+    <div class="section-head">
+      <div><p class="label">October lots</p><h2 id="beans-title">Four beans, one valley each.</h2></div>
+      <p>Each lot is a single farm and a single process. We cup every batch before it ships and roast light enough that you can still taste the place — so set your grinder a click finer than you would for supermarket coffee.</p>
+    </div>
+    <ol class="bean-list">
+      <li class="bean" data-reveal>
+        <span class="bean-no" aria-hidden="true">01</span>
+        <div><h3>Cầu Đất Washed</h3><p class="bean-meta">Trại Mát ridge · 1,550 m · Typica &amp; Bourbon</p></div>
+        <ul class="notes" aria-label="Tasting notes"><li>green apple</li><li>cane sugar</li><li>black tea</li></ul>
+        <p class="bean-proc"><b>Washed</b>36-hour wet ferment</p>
+        <p class="price">245,000₫<small>250 g</small></p>
+      </li>
+      <li class="bean" data-reveal>
+        <span class="bean-no" aria-hidden="true">02</span>
+        <div><h3>Lang Biang Honey</h3><p class="bean-meta">Lạc Dương · 1,600 m · Catimor selection</p></div>
+        <ul class="notes" aria-label="Tasting notes"><li>apricot</li><li>honeycomb</li><li>almond</li></ul>
+        <p class="bean-proc"><b>Yellow honey</b>dried 14 days on raised beds</p>
+        <p class="price">260,000₫<small>250 g</small></p>
+      </li>
+      <li class="bean" data-reveal>
+        <span class="bean-no" aria-hidden="true">03</span>
+        <div><h3>Đơn Dương Natural</h3><p class="bean-meta">Ka Đô village · 1,450 m · Bourbon</p></div>
+        <ul class="notes" aria-label="Tasting notes"><li>strawberry jam</li><li>cocoa nib</li><li>red wine</li></ul>
+        <p class="bean-proc"><b>Natural</b>whole cherry, 21 days</p>
+        <p class="price">275,000₫<small>250 g</small></p>
+      </li>
+      <li class="bean" data-reveal>
+        <span class="bean-no" aria-hidden="true">04</span>
+        <div><h3>Xuân Trường Anaerobic</h3><p class="bean-meta">Xuân Trường · 1,650 m · Typica · 40 kg lot</p></div>
+        <ul class="notes" aria-label="Tasting notes"><li>passion fruit</li><li>lemongrass</li><li>panela</li></ul>
+        <p class="bean-proc"><b>Anaerobic</b>72 h sealed tank</p>
+        <p class="price">320,000₫<small>250 g</small></p>
+      </li>
+    </ol>
+    <div class="beans-foot">
+      <span>Prices include roasting date on the bag. Order by Zalo or at the roastery.</span>
+      <a class="link" href="#cupping">Not sure which? Taste all four at a cupping</a>
+    </div>
+  </section>
+
+  <section class="story wrap" id="story" aria-labelledby="story-title">
+    <figure class="blob-fig" data-parallax>
+      <svg class="art" viewBox="0 0 600 600" role="img" aria-label="Illustration: a coffee branch with ripe and unripe cherries">
+        <g clip-path="url(#blobB)">
+          <rect width="600" height="600" fill="var(--bg)"/>
+          <path d="M40 520C180 420 300 320 560 90" fill="none" stroke="var(--ink)" stroke-width="14" stroke-linecap="round"/>
+          <g fill="var(--leaf-2)">
+            <path d="M200 420c-40-70-130-80-170-60 30 60 110 90 170 60z"/>
+            <path d="M330 310c10-80 90-120 150-110-10 70-80 120-150 110z" fill="var(--accent)"/>
+            <path d="M430 210c-50-50-60-130-30-170 50 40 60 120 30 170z" fill="var(--leaf-1)"/>
+            <path d="M260 370c60-30 150 0 180 40-60 30-140 10-180-40z" fill="var(--leaf-1)"/>
+          </g>
+          <g>
+            <circle cx="250" cy="400" r="26" fill="#A8432A"/><circle cx="292" cy="372" r="24" fill="#B85A2E"/><circle cx="268" cy="440" r="22" fill="#8E3424"/>
+            <circle cx="380" cy="292" r="22" fill="var(--sun)"/><circle cx="410" cy="262" r="20" fill="#A8432A"/><circle cx="352" cy="330" r="20" fill="var(--leaf-1)"/>
+            <circle cx="150" cy="470" r="20" fill="var(--leaf-1)"/><circle cx="180" cy="446" r="22" fill="#B85A2E"/>
+          </g>
+          <g fill="#F3EFE6" opacity=".5"><circle cx="244" cy="392" r="6"/><circle cx="286" cy="364" r="6"/><circle cx="404" cy="254" r="5"/><circle cx="174" cy="438" r="5"/></g>
+        </g>
+      </svg>
+      <figcaption class="annot">
+        <svg width="56" height="46" viewBox="0 0 56 46" aria-hidden="true"><path data-draw d="M52 42C44 24 30 12 6 8M16 2 6 8l8 9"/></svg>
+        <span>only the dark red ones get picked</span>
+      </figcaption>
+    </figure>
+    <div>
+      <p class="label">Cherry to kettle</p>
+      <h2 id="story-title">Nine days in the life of your next bag.</h2>
+      <p class="story-intro">Most coffee on Vietnamese shelves was roasted months ago. Ours is roasted to order on two fixed days, so the timeline from rested green bean to your door is short and written on the label.</p>
+      <div class="steps">
+        <svg viewBox="0 0 40 400" preserveAspectRatio="none" aria-hidden="true"><path data-draw d="M14 4C26 60 4 110 16 170S28 280 12 330 18 380 16 396"/></svg>
+        <ol>
+        <li data-reveal><p class="day">Day 1</p><h3>Green beans leave the farm</h3><p>Rested for at least 60 days after drying, then sorted by hand a second time at our table in Phường 8.</p></li>
+        <li data-reveal><p class="day">Day 3</p><h3>Roasted in 6 kg batches</h3><p>Light-to-medium on a drum roaster, logged per batch. Every batch is cupped the next morning.</p></li>
+        <li data-reveal><p class="day">Day 5</p><h3>Bagged and sent</h3><p>Valve bags, roast date stamped, packed in recycled paper. Couriered to HCMC and Hanoi.</p></li>
+        <li data-reveal><p class="day">Day 7–9</p><h3>On your scale</h3><p>Best from day 7 to day 30 after roast. The recipe card in the bag starts you at 15 g to 250 ml.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiet wrap" aria-label="Our approach">
+    <p data-reveal>Taste it first. Then decide what to put in your grinder.</p>
+    <span class="label">— why we run cuppings every weekend</span>
+  </section>
+
+  <section class="cupping wrap" id="cupping" aria-labelledby="cupping-title">
+    <div>
+      <p class="label">Weekend cupping · Da Lat</p>
+      <h2 id="cupping-title">Ninety minutes, eight cups, one long wooden table.</h2>
+      <p class="cupping-lede">We set out all four current lots plus one experiment, side by side, the way roasters taste. You smell, slurp and score with us, then brew your favourite on a V60. No experience needed — just come curious and not too hungry.</p>
+      <dl class="sched">
+        <dt>When</dt><dd>Saturday & Sunday, 9:00 and 14:00</dd>
+        <dt>Where</dt><dd>14 Đường Hoa Hồng, Phường 8, Đà Lạt (5 min from the market)</dd>
+        <dt>Price</dt><dd>250,000₫ per person, includes a 100 g bag of your pick</dd>
+        <dt>Language</dt><dd>Vietnamese, English on request</dd>
+      </dl>
+      <figure class="blob-fig" data-parallax>
+        <svg class="art" viewBox="0 0 600 600" role="img" aria-label="Illustration: top view of a cupping table with eight cups and spoons">
+          <g clip-path="url(#blobC)">
+            <rect width="600" height="600" fill="#B98B5E"/>
+            <g stroke="#A27449" stroke-width="3" opacity=".6"><path d="M0 120H600M0 250H600M0 380H600M0 500H600"/></g>
+            <g>
+              <g transform="translate(150 190)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#4A2F1E"/></g>
+              <g transform="translate(300 170)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#5B3A24"/></g>
+              <g transform="translate(450 190)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#3E2719"/></g>
+              <g transform="translate(150 340)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#5B3A24"/></g>
+              <g transform="translate(300 320)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#4A2F1E"/><ellipse cx="-6" cy="-8" rx="16" ry="9" fill="#8A5A3B" opacity=".7"/></g>
+              <g transform="translate(450 340)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#3E2719"/></g>
+              <g transform="translate(225 470)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#4A2F1E"/></g>
+              <g transform="translate(375 470)"><circle r="54" fill="#F3EFE6"/><circle r="40" fill="#5B3A24"/></g>
+            </g>
+            <g fill="var(--ink)"><rect x="340" y="250" width="110" height="8" rx="4" transform="rotate(-30 340 250)"/><ellipse cx="335" cy="252" rx="16" ry="11" transform="rotate(-30 335 252)"/></g>
+          </g>
+        </svg>
+        <figcaption class="annot">
+          <svg width="56" height="46" viewBox="0 0 56 46" aria-hidden="true"><path data-draw d="M52 4C44 24 28 36 6 40M14 32l-8 8 10 4"/></svg>
+          <span>8 seats. That's the whole room.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <form class="book" id="book" novalidate aria-labelledby="book-title">
+      <h3 id="book-title">Book a seat</h3>
+      <p>We confirm by Zalo or email within a day. Pay at the door.</p>
+      <fieldset class="field">
+        <legend>Choose a session</legend>
+        <div class="slots">
+          <label class="slot"><input type="radio" name="slot" value="sat-0900" required><span><b>Sat 1 Nov · 9:00</b>3 seats left</span></label>
+          <label class="slot"><input type="radio" name="slot" value="sat-1400"><span><b>Sat 1 Nov · 14:00</b>6 seats left</span></label>
+          <label class="slot"><input type="radio" name="slot" value="sun-0900" disabled><span><b>Sun 2 Nov · 9:00</b>Full</span></label>
+          <label class="slot"><input type="radio" name="slot" value="sun-1400"><span><b>Sun 2 Nov · 14:00</b>5 seats left</span></label>
+        </div>
+      </fieldset>
+      <div class="two">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="seats">Seats</label>
+          <select id="seats" name="seats"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+      </div>
+      <div class="field"><label for="contact">Zalo number or email</label><input id="contact" name="contact" autocomplete="email" required placeholder="09xx xxx xxx or you@email.com"></div>
+      <button class="btn btn-primary" type="submit">Book my cupping seat</button>
+      <p class="book-msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer" id="visit">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h2>Come up to Da Lat. The coffee is on us for the first cup.</h2>
+      </div>
+      <div><h3>Roastery</h3><p>14 Đường Hoa Hồng<br>Phường 8, Đà Lạt<br>Lâm Đồng, Vietnam</p></div>
+      <div><h3>Hours</h3><p>Tue–Sun, 8:00–17:00<br>Roasting Tue & Fri<br>Closed Mondays</p></div>
+      <div><h3>Order & ask</h3><ul><li><a class="link" href="#cupping">Book a cupping</a></li><li><a class="link" href="mailto:hello@may-roastery.example">hello@may-roastery.example</a></li><li><a class="link" href="#beans">Bean list</a></li></ul></div>
+    </div>
+    <p class="foot-word" aria-hidden="true">mây</p>
+    <div class="foot-base"><span>© 2026 Mây Roastery. Example site — fictional business.</span><span>Roasted in Da Lat, shipped across Vietnam.</span></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  // Mobile menu
+  const btn = document.querySelector('.menu-btn'), links = document.getElementById('nav-links');
+  const setMenu = open => { links.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); btn.textContent = open ? 'Close' : 'Menu'; };
+  btn.addEventListener('click', () => setMenu(btn.getAttribute('aria-expanded') !== 'true'));
+  links.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && links.classList.contains('open')) { setMenu(false); btn.focus(); } });
+
+  // Booking form (front-end only in this example)
+  const form = document.getElementById('book'), msg = form.querySelector('.book-msg');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const slot = form.querySelector('input[name=slot]:checked');
+    const missing = !slot ? 'a session' : !form.name.value.trim() ? 'your name' : !form.contact.value.trim() ? 'a Zalo number or email' : '';
+    msg.classList.toggle('ok', !missing);
+    msg.textContent = missing ? `Please add ${missing}.` : `Thanks, ${form.name.value.trim()} — we'll confirm ${form.seats.value} seat(s) within a day.`;
+  });
+
+  // Motion. ?static (for full-page screenshots) or reduced motion = no hidden states at all.
+  const isStatic = new URLSearchParams(location.search).has('static');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isStatic || reduce || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prepDraw = p => { const len = p.getTotalLength(); gsap.set(p, { strokeDasharray: len, strokeDashoffset: len }); return p; };
+
+  // Hero moment: lines rise from a mask, then the underline and arrows are drawn by hand
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.from('.hero h1 .line > span', { yPercent: 110, duration: .9, stagger: .08 })
+    .from('.hero-lede, .hero-actions, .hero-note', { y: 16, opacity: 0, duration: .6, stagger: .08 }, '-=.5')
+    .from('.hero .blob-fig > svg', { scale: .94, opacity: 0, duration: 1 }, '<-.4')
+    .to([...document.querySelectorAll('[data-draw="hero"]')].map(prepDraw), { strokeDashoffset: 0, duration: 1, ease: 'power2.inOut', stagger: .2 }, '-=.6')
+    .from('.hero .annot span', { opacity: 0, duration: .4, stagger: .2 }, '-=.6');
+
+  // Scroll: hand-drawn strokes draw in, gentle parallax (≤ 40px), soft batch reveal
+  document.querySelectorAll('[data-draw=""]').forEach(p => {
+    prepDraw(p);
+    gsap.to(p, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut', scrollTrigger: { trigger: p.closest('section, figure'), start: 'top 70%' } });
+  });
+  document.querySelectorAll('[data-parallax] > svg').forEach(el => {
+    gsap.fromTo(el, { y: 20 }, { y: -20, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  gsap.set('[data-reveal]', { y: 28, opacity: 0 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true,
+    onEnter: els => gsap.to(els, { y: 0, opacity: 1, duration: .7, ease: 'power2.out', stagger: .08 }) });
+})();
+</script>
+</body>
+</html>

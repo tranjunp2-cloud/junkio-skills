@@ -1,0 +1,11 @@
+{
+  "name": "web-builder",
+  "description": "Build websites that look designed, not generated: picks a non-repeating art direction, then builds, animates and self-reviews the page.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Junkio"
+  },
+  "repository": "https://github.com/tranjunp2-cloud/junkio-skills",
+  "license": "MIT",
+  "keywords": ["web-design", "landing-page", "frontend", "ui", "animation"]
+}

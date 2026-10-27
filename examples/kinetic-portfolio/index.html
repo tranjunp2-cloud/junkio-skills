@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linh Vo — Motion Designer, Saigon</title>
+<meta name="description" content="Linh Vo is a freelance motion designer in Saigon making title sequences, brand animation systems and live music visuals for agencies and studios.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0D'/%3E%3Ctext x='16' y='22' font-family='Arial Black,sans-serif' font-size='15' font-weight='900' fill='%23D4FF3A' text-anchor='middle'%3ELV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Unbounded:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D0D0D; --surface: #1C1C1C; --ink: #F2F2F2; --muted: #9A9A9A;
+  --accent: #D4FF3A; --accent-2: #FF3A5E; --line: #2C2C2C;
+  --knock: var(--bg);
+  --display: 'Unbounded', 'Arial Black', Impact, sans-serif;
+  --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* ratio 1.618, base 16px */
+  --t-sm: .8125rem; --t-base: 1rem; --t-md: 1.618rem; --t-lg: 2.618rem; --t-xl: 4.236rem;
+  --r-sm: 4px; --r-lg: 999px;
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 40px; --s5: 64px; --s6: 104px; --s7: 168px;
+  --gutter: clamp(16px, 4vw, 56px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--bg); color: var(--ink); scroll-behavior: smooth; }
+body { margin: 0; font: 400 var(--t-base)/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: -.03em; line-height: .9; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; }
+::selection { background: var(--accent); color: var(--bg); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: var(--r-sm); }
+.label { font: 600 var(--t-sm)/1.2 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.wrap { padding-inline: var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Outline / fill swap — the layout signature */
+/* knock-out fill hides the variable font's overlapping contours; stroke is doubled because half sits under the fill */
+.outline { color: var(--knock); -webkit-text-stroke: 4px var(--ink); paint-order: stroke fill; }
+.fill-art {
+  color: transparent; -webkit-text-stroke: 0;
+  background: repeating-linear-gradient(-58deg, var(--accent) 0 .09em, #b9e620 .09em .18em) 0 0 / 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s1); min-height: 52px; padding: 0 var(--s3);
+  border-radius: var(--r-lg); font: 600 var(--t-base)/1 var(--body); text-decoration: none;
+  transition: background-color .2s, color .2s, transform .15s;
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: var(--ink); }
+.btn-primary:active { transform: scale(.96); }
+.btn-ghost { color: var(--ink); padding-inline: 0; background: linear-gradient(var(--accent), var(--accent)) 0 85% / 0 2px no-repeat; transition: background-size .25s; }
+.btn-ghost:hover, .btn-ghost:focus-visible { background-size: 100% 2px; }
+.btn-ghost:active { color: var(--accent); }
+.btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+/* Header */
+.site-header { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: var(--s2) var(--gutter); mix-blend-mode: difference; }
+.mark { font: 800 1.125rem/1 var(--display); text-decoration: none; letter-spacing: -.04em; min-height: 44px; display: inline-flex; align-items: center; }
+.nav { display: flex; gap: var(--s4); }
+.nav a { font-weight: 600; font-size: var(--t-sm); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; background: linear-gradient(currentColor, currentColor) 0 75% / 0 1px no-repeat; transition: background-size .25s; }
+.nav a:hover, .nav a:focus-visible { background-size: 100% 1px; }
+.menu-btn { display: none; }
+
+/* Hero */
+.hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; padding-top: var(--s6); }
+.hero-name { font-size: clamp(5.5rem, 21vw, 22rem); line-height: .8; letter-spacing: -.05em; margin-left: -.04em; }
+.hero-name .row { display: block; white-space: nowrap; }
+.hero-name .row + .row { padding-left: 2.2ch; }
+.hero-name .ch { display: inline-block; }
+/* split letters are inline-blocks, so each one must clip the fill itself */
+.fill-art .ch { background: inherit; -webkit-background-clip: text; background-clip: text; }
+.hero-meta { position: absolute; right: var(--gutter); top: 20vh; text-align: right; }
+.timecode { font: 500 var(--t-md)/1 var(--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.rec { display: inline-flex; align-items: center; gap: var(--s1); margin-bottom: var(--s1); }
+.rec::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-2); animation: blink 1.6s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .15; } }
+.hero-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--s4); padding-block: var(--s5) var(--s4); border-top: 1px solid var(--line); margin-top: var(--s5); }
+.hero-lede { font-size: clamp(1.125rem, 1.6vw, 1.5rem); line-height: 1.45; max-width: 34ch; }
+.hero-lede strong { color: var(--accent); font-weight: 600; }
+.cta-row { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.hero-inner { position: relative; display: flex; flex-direction: column; justify-content: center; }
+
+/* Marquee — scroll scrubbed */
+.marquee { --knock: var(--surface); border-block: 1px solid var(--line); padding-block: var(--s4); overflow: hidden; background: var(--surface); }
+.marquee-track { display: flex; width: max-content; font: 800 clamp(3rem, 9vw, 9rem)/1 var(--display); letter-spacing: -.04em; white-space: nowrap; }
+.marquee-track span { padding-right: .5em; display: inline-flex; align-items: center; gap: .5em; }
+.marquee-track span::after { content: ''; width: .28em; height: .28em; background: var(--accent); border-radius: 50%; }
+.marquee-track .outline { -webkit-text-stroke-width: 3px; }
+.marquee-track.reverse { transform: translateX(-50%); margin-top: var(--s2); }
+
+/* Work */
+.work { padding-block: var(--s6) var(--s5); }
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--s3); margin-bottom: var(--s4); }
+.section-head h2 { font-size: var(--t-lg); }
+.project { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) clamp(220px, 26vw, 380px); gap: var(--s4); align-items: center; padding-block: var(--s4); border-top: 1px solid var(--line); text-decoration: none; position: relative; }
+.project:last-child { border-bottom: 1px solid var(--line); }
+.project .num { font: 500 var(--t-sm)/1 var(--display); color: var(--muted); align-self: start; padding-top: .6em; }
+.project h3 { font-size: clamp(2.6rem, 7.4vw, 7.5rem); line-height: .92; transition: color .3s; }
+.project h3 span { padding-block: .14em; transition: background-position .9s ease, -webkit-text-stroke-color .3s; }
+.project:hover h3 span, .project:focus-visible h3 span, .project.is-live h3 span {
+  color: transparent; -webkit-text-stroke-color: transparent;
+  background: repeating-linear-gradient(-58deg, var(--accent) 0 .09em, #b9e620 .09em .18em) 0 0 / 200% 100%;
+  -webkit-background-clip: text; background-clip: text; background-position: 100% 0;
+}
+.project .meta { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin-top: var(--s2); color: var(--muted); font-size: var(--t-sm); }
+.project .meta b { color: var(--ink); font-weight: 600; }
+.project p { color: var(--muted); max-width: 52ch; margin-top: var(--s1); }
+.thumb { aspect-ratio: 16 / 9; border-radius: var(--r-sm); border: 1px solid var(--line); overflow: hidden; position: relative; background: var(--surface); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.project:hover .thumb, .project.is-live .thumb { transform: scale(1.03) rotate(-1deg); }
+.thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Quiet line */
+.quiet { min-height: 70svh; display: grid; place-items: center; padding-block: var(--s7); text-align: center; }
+.quiet p { font: 500 clamp(1.5rem, 3.4vw, 3rem)/1.2 var(--display); letter-spacing: -.03em; max-width: 22ch; }
+.quiet em { font-style: normal; color: var(--accent); }
+.quiet .label { margin-top: var(--s4); display: block; }
+
+/* Process */
+.process { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s5); padding-block: var(--s6); border-top: 1px solid var(--line); }
+.process-intro h2 { font-size: clamp(2.4rem, 5vw, var(--t-xl)); }
+.process-intro p { color: var(--muted); margin-top: var(--s3); max-width: 40ch; }
+.process-intro { position: sticky; top: var(--s6); align-self: start; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+.steps li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) auto; gap: var(--s3); padding-block: var(--s3); border-bottom: 1px solid var(--line); align-items: baseline; }
+.steps li::before { counter-increment: step; content: '0' counter(step); font: 800 var(--t-lg)/1 var(--display); color: var(--bg); -webkit-text-stroke: 3px var(--muted); paint-order: stroke fill; }
+.steps h3 { font: 600 1.25rem/1.3 var(--body); letter-spacing: 0; }
+.steps p { color: var(--muted); margin-top: 4px; max-width: 46ch; }
+.steps .dur { font: 500 var(--t-sm)/1 var(--display); color: var(--accent); white-space: nowrap; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); margin-top: var(--s5); }
+.facts div { border-top: 2px solid var(--accent); padding-top: var(--s2); }
+.facts strong { display: block; font: 800 var(--t-lg)/1 var(--display); letter-spacing: -.04em; }
+.facts span { color: var(--muted); font-size: var(--t-sm); }
+
+/* CTA */
+.contact { --knock: var(--accent); padding-block: var(--s6) var(--s5); background: var(--accent); color: var(--bg); overflow: hidden; }
+.contact .label { color: #3a4410; }
+.contact h2 { font-size: clamp(3.4rem, 13.5vw, 15rem); line-height: .82; letter-spacing: -.05em; margin: var(--s3) 0 var(--s5) -.04em; }
+.contact h2 .row { display: block; white-space: nowrap; }
+.contact h2 .outline { -webkit-text-stroke-color: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s4); align-items: end; }
+.contact p { max-width: 44ch; font-size: 1.125rem; }
+.btn-dark { background: var(--bg); color: var(--accent); min-height: 64px; padding-inline: var(--s4); font-size: 1.125rem; }
+.btn-dark:hover { background: var(--accent-2); color: var(--bg); }
+.btn-dark:active { transform: scale(.96); }
+.email { display: inline-flex; align-items: center; min-height: 44px; margin-top: var(--s2); font: 500 clamp(1rem, 2vw, 1.5rem)/1.3 var(--display); letter-spacing: -.02em; text-decoration: underline 2px; text-underline-offset: 6px; transition: text-decoration-color .2s; }
+.email:hover { text-decoration-color: transparent; }
+.email:active { color: #3a4410; }
+
+/* Footer */
+.site-footer { padding: var(--s5) var(--gutter) 0; overflow: hidden; }
+.foot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); padding-bottom: var(--s5); }
+.foot-grid p { color: var(--muted); font-size: var(--t-sm); margin-top: var(--s1); }
+.foot-grid .clock { font: 500 var(--t-md)/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; margin-top: var(--s1); }
+.foot-grid a { text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; font-weight: 600; background: linear-gradient(var(--accent), var(--accent)) 0 75% / 0 1px no-repeat; transition: background-size .25s; }
+.foot-grid a:hover, .foot-grid a:focus-visible { background-size: 100% 1px; }
+.foot-word { font: 800 clamp(4rem, 16.5vw, 18rem)/.8 var(--display); letter-spacing: -.05em; margin: 0 0 -.12em -.04em; white-space: nowrap; color: var(--bg); -webkit-text-stroke: 3px #3a3a3a; paint-order: stroke fill; user-select: none; }
+
+/* Custom cursor */
+.cursor { position: fixed; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--accent); pointer-events: none; z-index: 50; mix-blend-mode: difference; opacity: 0; transition: width .25s, height .25s, margin .25s; display: none; }
+.cursor.is-big { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+@media (pointer: fine) { .has-cursor .cursor { display: block; } }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .project { grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+  .project .num { padding-top: 0; }
+  .process { grid-template-columns: minmax(0, 1fr); }
+  .process-intro { position: static; }
+  .hero-meta { position: static; text-align: left; margin-bottom: var(--s4); }
+  .hero-inner { justify-content: flex-start; padding-top: var(--s4); }
+}
+@media (max-width: 640px) {
+  .site-header { mix-blend-mode: normal; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); }
+  .menu-btn { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 var(--s2); background: none; border: 1px solid var(--line); border-radius: var(--r-lg); color: var(--ink); font: 600 var(--t-sm)/1 var(--body); letter-spacing: .14em; text-transform: uppercase; }
+  .menu-btn:active { background: var(--surface); }
+  .nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: var(--s2) var(--gutter) var(--s3); background: var(--bg); border-bottom: 1px solid var(--line); display: none; }
+  .nav.is-open { display: flex; }
+  .nav a { font: 800 var(--t-md)/1 var(--display); letter-spacing: -.02em; text-transform: none; min-height: 56px; }
+  .hero-name { font-size: 28vw; }
+  .hero-name .row + .row { padding-left: 1.2ch; }
+  .hero-foot { grid-template-columns: minmax(0, 1fr); margin-top: var(--s4); padding-top: var(--s4); }
+  .steps li { grid-template-columns: minmax(0, 1fr) auto; }
+  .steps li::before { grid-column: 1 / -1; }
+  .facts { grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
+  .contact-grid, .foot-grid { grid-template-columns: minmax(0, 1fr); }
+  .contact h2 { font-size: 15vw; }
+  .outline { -webkit-text-stroke-width: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="mark" href="#top" aria-label="Linh Vo, back to top">LV—</a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-meta">
+        <div class="label rec">Booking Q1 2027</div>
+        <div class="timecode" aria-hidden="true">00:00:00:00</div>
+        <div class="label" style="margin-top:8px">Saigon · GMT+7</div>
+      </div>
+      <h1 class="hero-name" id="hero-title" aria-label="Linh Vo, motion designer">
+        <span class="row fill-art" data-split aria-hidden="true">LINH</span>
+        <span class="row outline" data-split aria-hidden="true">VO</span>
+      </h1>
+    </div>
+    <div class="hero-foot">
+      <p class="hero-lede">Freelance motion designer making <strong>title sequences</strong>, <strong>brand animation systems</strong> and <strong>visuals for live music</strong>, for agencies that need the first ten seconds to land.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:hello@linhvo.studio?subject=New%20project" data-magnetic>Start a project
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#work">See selected work</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee" aria-label="Disciplines">
+    <div class="marquee-track" aria-hidden="true">
+      <span>TITLE SEQUENCES</span><span class="outline">BRAND MOTION</span><span>MUSIC VISUALS</span>
+      <span>TITLE SEQUENCES</span><span class="outline">BRAND MOTION</span><span>MUSIC VISUALS</span>
+    </div>
+    <div class="marquee-track reverse" aria-hidden="true">
+      <span class="outline">24 FRAMES</span><span>ONE IDEA</span><span class="outline">ZERO FILLER</span>
+      <span class="outline">24 FRAMES</span><span>ONE IDEA</span><span class="outline">ZERO FILLER</span>
+    </div>
+    <p class="sr-only">Title sequences, brand motion and music visuals.</p>
+  </section>
+
+  <section class="work wrap" id="work" aria-labelledby="work-title">
+    <div class="section-head">
+      <h2 id="work-title">Selected work</h2>
+      <span class="label">2023 — 2026 · 4 of 31</span>
+    </div>
+
+    <a class="project" href="mailto:hello@linhvo.studio?subject=Reel%20request%3A%20Dem%20Trang" data-reveal>
+      <span class="num">01</span>
+      <div>
+        <h3><span class="outline">ĐÊM TRẮNG</span></h3>
+        <div class="meta"><span><b>Opening titles</b></span><span>Indie feature (fictional)</span><span>2:10 runtime</span><span>2026</span></div>
+        <p>Credits that surface like condensation on a bus window, timed to the rain foley so every name lands on a drop.</p>
+      </div>
+      <div class="thumb">
+        <svg viewBox="0 0 160 90" role="img" aria-label="Styleframe: letterboxed night frame with a thin horizon line and condensed credits">
+          <rect width="160" height="90" fill="#101418"/>
+          <g fill="#F2F2F2" opacity=".35">
+            <circle cx="24" cy="30" r="1"/><circle cx="52" cy="22" r="1.4"/><circle cx="88" cy="34" r=".8"/><circle cx="118" cy="26" r="1.2"/><circle cx="140" cy="40" r="1"/><circle cx="70" cy="70" r="1"/><circle cx="34" cy="62" r="1.3"/><circle cx="130" cy="60" r=".9"/>
+          </g>
+          <line x1="20" y1="50" x2="140" y2="50" stroke="#D4FF3A" stroke-width=".6"/>
+          <text x="80" y="46" fill="#F2F2F2" font-family="Unbounded, sans-serif" font-size="7" font-weight="800" text-anchor="middle" letter-spacing="2">ĐÊM TRẮNG</text>
+          <text x="80" y="58" fill="#9A9A9A" font-family="Inter, sans-serif" font-size="3.4" text-anchor="middle" letter-spacing="1.4">A FILM BY THANH HÀ</text>
+          <rect width="160" height="11" fill="#000"/><rect y="79" width="160" height="11" fill="#000"/>
+        </svg>
+      </div>
+    </a>
+
+    <a class="project" href="mailto:hello@linhvo.studio?subject=Reel%20request%3A%20Mango%20Rail" data-reveal>
+      <span class="num">02</span>
+      <div>
+        <h3><span class="outline">MANGO RAIL</span></h3>
+        <div class="meta"><span><b>Brand animation system</b></span><span>Regional railway (fictional)</span><span>48 idents + toolkit</span><span>2025</span></div>
+        <p>A logo that behaves like a timetable: tracks converge, the sun rises, the route name drops in. Built as After Effects rigs plus Lottie for the app.</p>
+      </div>
+      <div class="thumb">
+        <svg viewBox="0 0 160 90" role="img" aria-label="Styleframe: lime rails converging toward a pink sun on a dark horizon">
+          <rect width="160" height="90" fill="#1C1C1C"/>
+          <circle cx="80" cy="40" r="16" fill="#FF3A5E"/>
+          <rect y="40" width="160" height="50" fill="#0D0D0D"/>
+          <g stroke="#D4FF3A" stroke-width="1.6" fill="none">
+            <path d="M78 40 L40 90"/><path d="M82 40 L120 90"/>
+          </g>
+          <g stroke="#D4FF3A" stroke-width=".8" opacity=".7">
+            <path d="M74 46h12M70 52h20M65 60h30M58 70h44M49 82h62"/>
+          </g>
+          <text x="12" y="20" fill="#F2F2F2" font-family="Unbounded, sans-serif" font-size="6" font-weight="800">MANGO/RAIL</text>
+          <text x="12" y="27" fill="#9A9A9A" font-family="Inter, sans-serif" font-size="3.4" letter-spacing="1">06:40 → ĐÀ LẠT</text>
+        </svg>
+      </div>
+    </a>
+
+    <a class="project" href="mailto:hello@linhvo.studio?subject=Reel%20request%3A%20Low%20Tide%20Tour" data-reveal>
+      <span class="num">03</span>
+      <div>
+        <h3><span class="outline">LOW TIDE</span></h3>
+        <div class="meta"><span><b>Live visuals</b></span><span>Band tour, 14 cities (fictional)</span><span>Real-time, audio-reactive</span><span>2024</span></div>
+        <p>Concentric rings driven by the kick drum, a palette that cools as the set slows. Delivered as a TouchDesigner show file the VJ could run blind.</p>
+      </div>
+      <div class="thumb">
+        <svg viewBox="0 0 160 90" role="img" aria-label="Styleframe: concentric rings and an audio waveform in lime and pink">
+          <rect width="160" height="90" fill="#0D0D0D"/>
+          <g fill="none" stroke="#D4FF3A">
+            <circle cx="110" cy="45" r="8" stroke-width="2"/><circle cx="110" cy="45" r="16" stroke-width="1.4" opacity=".8"/><circle cx="110" cy="45" r="25" stroke-width="1" opacity=".55"/><circle cx="110" cy="45" r="35" stroke-width=".7" opacity=".35"/><circle cx="110" cy="45" r="46" stroke-width=".5" opacity=".2"/>
+          </g>
+          <g fill="#FF3A5E">
+            <rect x="14" y="40" width="3" height="10"/><rect x="20" y="33" width="3" height="24"/><rect x="26" y="28" width="3" height="34"/><rect x="32" y="37" width="3" height="16"/><rect x="38" y="22" width="3" height="46"/><rect x="44" y="35" width="3" height="20"/><rect x="50" y="41" width="3" height="8"/>
+          </g>
+        </svg>
+      </div>
+    </a>
+
+    <a class="project" href="mailto:hello@linhvo.studio?subject=Reel%20request%3A%20Song" data-reveal>
+      <span class="num">04</span>
+      <div>
+        <h3><span class="outline">SÓNG</span></h3>
+        <div class="meta"><span><b>Lyric video</b></span><span>Singer-songwriter (fictional)</span><span>3:48 runtime</span><span>2023</span></div>
+        <p>Every line of the lyric is a wave that breaks into the next word. Vietnamese diacritics animated as their own little splashes.</p>
+      </div>
+      <div class="thumb">
+        <svg viewBox="0 0 160 90" role="img" aria-label="Styleframe: stacked sine waves with a single word riding the top crest">
+          <rect width="160" height="90" fill="#141414"/>
+          <g fill="none" stroke-width="1.4">
+            <path d="M0 60 Q20 48 40 60 T80 60 T120 60 T160 60" stroke="#D4FF3A"/>
+            <path d="M0 68 Q20 56 40 68 T80 68 T120 68 T160 68" stroke="#D4FF3A" opacity=".6"/>
+            <path d="M0 76 Q20 64 40 76 T80 76 T120 76 T160 76" stroke="#D4FF3A" opacity=".35"/>
+          </g>
+          <text x="40" y="46" fill="#F2F2F2" font-family="Unbounded, sans-serif" font-size="12" font-weight="800" text-anchor="middle">sóng</text>
+          <circle cx="47" cy="27" r="1.6" fill="#FF3A5E"/>
+        </svg>
+      </div>
+    </a>
+  </section>
+
+  <section class="quiet wrap" aria-label="Approach">
+    <div>
+      <p>Each frame gets <em>1/24th of a second</em>. I make sure it earns it.</p>
+      <span class="label">Linh Vo · 11 years in motion</span>
+    </div>
+  </section>
+
+  <section class="process wrap" id="process" aria-labelledby="process-title">
+    <div class="process-intro">
+      <span class="label">How a project runs</span>
+      <h2 id="process-title" style="margin-top:16px">Brief to master in <span class="outline">six weeks</span></h2>
+      <p>I plug into your team as the motion lead: one point of contact, async-friendly from GMT+7, with reviews booked in your morning.</p>
+      <div class="facts">
+        <div><strong>31</strong><span>shipped title &amp; brand projects</span></div>
+        <div><strong>3</strong><span>styleframe routes per pitch</span></div>
+        <div><strong>48h</strong><span>turnaround on review notes</span></div>
+      </div>
+    </div>
+    <ol class="steps">
+      <li><div><h3>Beat sheet</h3><p>We map the edit, the music and the story beats on one page before anything moves.</p></div><span class="dur">Week 1</span></li>
+      <li><div><h3>Styleframes</h3><p>Three distinct visual routes, each with a ten-second motion test so you can judge the feel, not just the look.</p></div><span class="dur">Week 2</span></li>
+      <li><div><h3>Animatic</h3><p>The full piece at rough timing, locked to picture or track. Changes are cheap here, so we make them here.</p></div><span class="dur">Weeks 3–4</span></li>
+      <li><div><h3>Animation &amp; finish</h3><p>Final animation, sound sync, colour pass. Two rounds of notes included.</p></div><span class="dur">Weeks 5–6</span></li>
+      <li><div><h3>Delivery</h3><p>ProRes masters, social cut-downs, Lottie or AE templates and a handover doc your team can actually use.</p></div><span class="dur">Day 42</span></li>
+    </ol>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <span class="label">Now booking January–March 2027</span>
+      <h2 id="contact-title" aria-label="Start a project">
+        <span class="row" aria-hidden="true">START A</span>
+        <span class="row outline" aria-hidden="true">PROJECT</span>
+      </h2>
+      <div class="contact-grid">
+        <div>
+          <p>Send the brief, the deadline and a rough budget. You will get a reply within one working day with questions or a first route.</p>
+          <a class="email" href="mailto:hello@linhvo.studio">hello@linhvo.studio</a>
+        </div>
+        <a class="btn btn-dark" href="mailto:hello@linhvo.studio?subject=New%20project&amp;body=Brief%3A%0ADeadline%3A%0ABudget%3A" data-magnetic>Email your brief
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-grid">
+    <div><span class="label">Studio</span><p>District 3, Saigon<br>Working worldwide, remote first</p></div>
+    <div><span class="label">Local time</span><div class="clock" data-clock>--:--</div><p>Asia/Ho_Chi_Minh</p></div>
+    <div><span class="label">Elsewhere</span><br><a href="mailto:hello@linhvo.studio?subject=Full%20reel%20request">Request the full reel</a><br><a href="#top">Back to top ↑</a></div>
+  </div>
+  <div class="foot-word" aria-hidden="true">LINH VO</div>
+  <p class="sr-only">© 2026 Linh Vo. Fictional portfolio example.</p>
+</footer>
+<div class="cursor" aria-hidden="true"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const isStatic = new URLSearchParams(location.search).has('static');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animate = !isStatic && !reduce && window.gsap;
+
+  // Mobile menu
+  const btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
+  const setMenu = open => { nav.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', open); btn.textContent = open ? 'Close' : 'Menu'; };
+  btn.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
+  nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  // Saigon clock
+  const clock = document.querySelector('[data-clock]');
+  const fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Ho_Chi_Minh' });
+  const tick = () => clock.textContent = fmt.format(new Date());
+  tick(); setInterval(tick, 15000);
+
+  // Running timecode (24 fps)
+  const tc = document.querySelector('.timecode');
+  const pad = n => String(n).padStart(2, '0');
+  if (!reduce && !isStatic) {
+    const t0 = performance.now();
+    const run = now => { const f = Math.floor((now - t0) / (1000 / 24));
+      tc.textContent = `${pad(Math.floor(f / 86400))}:${pad(Math.floor(f / 1440) % 60)}:${pad(Math.floor(f / 24) % 60)}:${pad(f % 24)}`;
+      requestAnimationFrame(run); };
+    requestAnimationFrame(run);
+  } else tc.textContent = '00:01:12:08';
+
+  if (isStatic) document.querySelector('.project').classList.add('is-live');
+  if (!animate) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero: split letters
+  document.querySelectorAll('[data-split]').forEach(el => {
+    el.innerHTML = [...el.textContent].map(c => `<span class="ch">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+  });
+  gsap.from('.hero-name .ch', { yPercent: 60, opacity: 0, rotate: 8, duration: .7, ease: 'back.out(2)', stagger: .06, delay: .15 });
+  gsap.from('.hero-foot > *, .hero-meta', { y: 24, opacity: 0, duration: .7, ease: 'power2.out', stagger: .1, delay: .6 });
+
+  // Scroll: scrubbed marquee, opposite directions
+  gsap.to('.marquee-track:not(.reverse)', { xPercent: -50, ease: 'none', scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo('.marquee-track.reverse', { xPercent: -50 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+  // Project words swap outline -> fill as they pass the centre
+  document.querySelectorAll('.project').forEach(p => ScrollTrigger.create({ trigger: p, start: 'top 60%', end: 'bottom 40%', toggleClass: 'is-live' }));
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true,
+    onEnter: els => gsap.from(els, { y: 40, opacity: 0, duration: .7, ease: 'power2.out', stagger: .08 }) });
+
+  // Hover: magnetic buttons + growing cursor (fine pointers only)
+  if (!matchMedia('(pointer: fine)').matches) return;
+  document.querySelectorAll('[data-magnetic]').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect();
+      gsap.to(b, { x: Math.max(-12, Math.min(12, (e.clientX - r.left - r.width / 2) * .25)), y: Math.max(-12, Math.min(12, (e.clientY - r.top - r.height / 2) * .25)), duration: .3 }); });
+    b.addEventListener('pointerleave', () => gsap.to(b, { x: 0, y: 0, duration: .5, ease: 'elastic.out(1, .4)' }));
+  });
+  document.documentElement.classList.add('has-cursor');
+  const cur = document.querySelector('.cursor');
+  const xTo = gsap.quickTo(cur, 'x', { duration: .25, ease: 'power3' }), yTo = gsap.quickTo(cur, 'y', { duration: .25, ease: 'power3' });
+  addEventListener('pointermove', e => { cur.style.opacity = 1; xTo(e.clientX); yTo(e.clientY); });
+  document.addEventListener('pointerleave', () => cur.style.opacity = 0);
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('pointerenter', () => cur.classList.add('is-big'));
+    el.addEventListener('pointerleave', () => cur.classList.remove('is-big'));
+  });
+})();
+</script>
+</body>
+</html>
