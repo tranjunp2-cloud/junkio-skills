@@ -1,0 +1,9 @@
+{
+  "name": "video-builder",
+  "description": "Create and revise product films, portfolio videos and social clips with source-aware workflows for HyperFrames, Remotion, audio, captions and delivery.",
+  "version": "0.1.0",
+  "author": { "name": "Junkio" },
+  "repository": "https://github.com/tranjunp2-cloud/junkio-skills",
+  "license": "MIT",
+  "keywords": ["video", "motion-design", "hyperframes", "remotion", "voiceover", "captions", "portfolio", "tiktok", "script-review"]
+}

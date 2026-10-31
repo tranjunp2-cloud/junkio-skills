@@ -1,51 +1,55 @@
 # junkio-skills
 
-Claude Code skills by Junkio.
+Hai bộ skill độc lập của Junkio. Bắt đầu từ [AGENTS.md](AGENTS.md) để AI chọn đúng bộ theo công việc.
 
-| Plugin | What it does |
-|---|---|
-| [`web-builder`](plugins/web-builder/skills/web-builder/SKILL.md) | Builds websites that look art-directed instead of AI-generated: picks a non-repeating visual direction, then builds, animates and self-reviews the page with screenshots. |
+| Công việc | Thư mục | Skill cần đọc |
+|---|---|---|
+| Website, landing page, portfolio, giao diện, responsive, hiệu ứng trên web | [web-builder](web-builder/README.md) | [web-builder/SKILL.md](web-builder/skills/web-builder/SKILL.md) |
+| Video giới thiệu, TikTok/Reels, motion video, lời đọc, phụ đề, render MP4 | [video-builder](video-builder/README.md) | [video-builder/SKILL.md](video-builder/skills/video-builder/SKILL.md) |
 
-## Install
-
+```text
+junkio-skills/
+├── AGENTS.md                  # Quy tắc chọn skill cho AI
+├── CLAUDE.md                  # Dẫn Claude tới cùng quy tắc
+├── README.md
+├── web-builder/
+│   ├── README.md
+│   ├── skills/web-builder/    # Skill, references và scripts làm web
+│   ├── examples/              # Các website mẫu và screenshot
+│   └── .claude-plugin/        # Metadata plugin web
+└── video-builder/
+    ├── README.md
+    ├── skills/video-builder/  # Skill, danh mục và quy trình làm video
+    └── .claude-plugin/        # Metadata plugin video
 ```
+
+Thư mục ẩn `.claude-plugin` ở gốc giữ marketplace trỏ đến hai bộ trên. Mỗi bộ vẫn có cấu trúc plugin riêng để giữ khả năng cài đặt.
+
+## Cách yêu cầu AI làm việc
+
+Khi làm trong một dự án khác, đưa cho AI đường dẫn `junkio-skills/AGENTS.md` để đọc trước. Ví dụ:
+
+> Đọc AGENTS.md trong thư mục junkio-skills trên Desktop, chọn bộ skill phù hợp rồi làm yêu cầu sau: …
+
+- “Làm landing page cho quán cà phê” → **web-builder**.
+- “Dựng video giới thiệu sản phẩm có lời đọc tiếng Việt” → **video-builder**.
+- “Đặt video đã có vào frame laptop trên portfolio” → phần tích hợp web, kèm hướng dẫn [portfolio-video](video-builder/skills/video-builder/references/portfolio-video.md).
+- “Làm video mới rồi đưa lên website” → dựng/xuất bằng **video-builder**, sau đó tích hợp bằng phần web phù hợp.
+
+AI chỉ đọc reference cần cho tác vụ. Việc có thư mục này không tự cài toàn bộ engine/provider hay tự nạp skill vào mọi chat.
+
+## Cài qua marketplace
+
+Sau khi phiên bản tương ứng có trên GitHub, cài bộ cần dùng:
+
+```text
 /plugin marketplace add tranjunp2-cloud/junkio-skills
 /plugin install web-builder@junkio-skills
+/plugin install video-builder@junkio-skills
 ```
 
-Then ask Claude for a site, or call the skill directly:
-
-```
-/web-builder landing page for a specialty coffee roastery in Da Lat
-/web-builder portfolio for a motion designer --style kinetic
-/web-builder SaaS homepage for an invoicing app --variants 3
-```
-
-## How web-builder works
-
-1. **Read the brief** — subject, audience, tone, the one action a visitor should take; reuses the project's existing tokens and components.
-2. **Pick an art direction** — 12 directions (bento, editorial, brutalist, glass, swiss, retro, luxury, playful, terminal, organic, kinetic, isometric). `scripts/pick-style.js` matches the brief and avoids directions used recently, so consecutive sites differ.
-3. **Build** — tokens first, specific copy, a memorable layout signature, under 23 anti-slop rules.
-4. **Animate** — one hero moment, one scroll behaviour, one hover language (GSAP or CSS), with `prefers-reduced-motion`.
-5. **Self-review** — desktop + mobile screenshots against a checklist (distinctiveness, hierarchy, responsive, accessibility, performance), fix, repeat.
-
-## Examples
-
-Three runs of the skill, three directions — all fictional businesses, each a single self-contained HTML file in [`examples/`](examples/). Add `?static` to the URL to see the final state without animation.
-
-| `organic` — coffee roastery | `terminal` — developer CLI | `kinetic` — motion designer |
-|---|---|---|
-| ![organic](examples/organic-coffee/screenshots/hero.jpg) | ![terminal](examples/terminal-cli/screenshots/hero.jpg) | ![kinetic](examples/kinetic-portfolio/screenshots/hero.jpg) |
-| [page](examples/organic-coffee/index.html) | [page](examples/terminal-cli/index.html) | [page](examples/kinetic-portfolio/index.html) |
-
-Works on its own. If `ui-ux-pro-max`, `gsap-*`, image-generation or browser-automation skills are installed, it uses them too.
-
-## Tiếng Việt
-
-`web-builder` giúp AI dựng website **đa dạng và đẹp hơn**: mỗi lần chọn một phong cách thiết kế khác (12 hướng), không lặp lại phong cách vừa dùng, viết nội dung cụ thể thay vì câu chữ chung chung, thêm hiệu ứng chuyển động, rồi tự chụp màn hình để rà soát và sửa trước khi bàn giao.
-
-Cài đặt: chạy hai lệnh trong mục **Install** ở trên trong Claude Code.
+Xem hướng dẫn và ví dụ trong [web-builder](web-builder/README.md) hoặc [video-builder](video-builder/README.md).
 
 ## License
 
-MIT
+MIT cho nội dung của repository. Các dependency/skill bên thứ ba giữ license riêng.

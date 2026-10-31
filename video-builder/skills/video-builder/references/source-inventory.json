@@ -1,0 +1,970 @@
+{
+  "checked_on": "2026-10-30",
+  "purpose": "Local skill provenance for a synthesized video workflow; no third-party skill bodies or credentials are bundled.",
+  "path_prefix": "$HOME means the user home at the time of inspection; re-discover on another machine.",
+  "entry_count": 62,
+  "group_counts": {
+    "video-engines": 22,
+    "audio": 9,
+    "visual-support": 5,
+    "gsap": 8,
+    "threejs": 13,
+    "adjacent-not-video-default": 4,
+    "connected-provider-routing": 1
+  },
+  "skills": [
+    {
+      "id": "hyperframes",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "hyperframes",
+          "path": "$HOME/.claude/skills/hyperframes/SKILL.md",
+          "sha256": "180ce4eea5f33f1617105c92e2690a5a2320abf624c263186ec0cb1a78a919ef"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-cli",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "hyperframes-cli",
+          "path": "$HOME/.claude/skills/hyperframes-cli/SKILL.md",
+          "sha256": "44a48ccfa4cbd4f4234f8306c96268a4be56a0f2376abedbf31d2167b3c21286"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-registry",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "hyperframes-registry",
+          "path": "$HOME/.claude/skills/hyperframes-registry/SKILL.md",
+          "sha256": "1c7b27632c9ea9febaafc2d9af073b377029f46be4bee70d75b5e713eb698423"
+        }
+      ]
+    },
+    {
+      "id": "media-use",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "media-use",
+          "path": "$HOME/.claude/skills/media-use/SKILL.md",
+          "sha256": "ef3976a02ff516d8e5ed0b7fff19d4bbf9358264233bace33fdacaa3aa7f37de"
+        }
+      ]
+    },
+    {
+      "id": "remotion-to-hyperframes",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-to-hyperframes",
+          "path": "$HOME/.claude/skills/remotion-to-hyperframes/SKILL.md",
+          "sha256": "b0ca685894ce06dfa650d9a8899aff3611d0228b5ae6c13ec9f81ed55ead201c"
+        }
+      ]
+    },
+    {
+      "id": "motion-graphics",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "motion-graphics",
+          "path": "$HOME/.codex/skills/motion-graphics/SKILL.md",
+          "sha256": "050553603fced694c32bb0bbb38e4203dfa8b7428c17bddb4c9204bad191ce1a"
+        }
+      ]
+    },
+    {
+      "id": "remotion-best-practices",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-best-practices",
+          "path": "$HOME/.codex/skills/remotion-best-practices/SKILL.md",
+          "sha256": "23c5c52d379ccca73dfdc644b700bf0286518c842b3bb61441c675d1c14f8eca"
+        },
+        {
+          "declared_name": "remotion-best-practices",
+          "path": "$HOME/.claude/skills/remotion-best-practices/SKILL.md",
+          "sha256": "23c5c52d379ccca73dfdc644b700bf0286518c842b3bb61441c675d1c14f8eca"
+        }
+      ]
+    },
+    {
+      "id": "remotion-create",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-create",
+          "path": "$HOME/.codex/skills/remotion-create/SKILL.md",
+          "sha256": "db5b956b0308ecf6a5a96357ad9f3d88692473053fbdd4e4f1e2beeed79dc6a6"
+        },
+        {
+          "declared_name": "remotion-create",
+          "path": "$HOME/.claude/skills/remotion-create/SKILL.md",
+          "sha256": "db5b956b0308ecf6a5a96357ad9f3d88692473053fbdd4e4f1e2beeed79dc6a6"
+        }
+      ]
+    },
+    {
+      "id": "remotion-markup",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-markup",
+          "path": "$HOME/.codex/skills/remotion-markup/SKILL.md",
+          "sha256": "4b93ba32451e84fb0b071f7ca31ae6abc792fe07bf83a7575ae5663afa88a4b5"
+        },
+        {
+          "declared_name": "remotion-markup",
+          "path": "$HOME/.claude/skills/remotion-markup/SKILL.md",
+          "sha256": "4b93ba32451e84fb0b071f7ca31ae6abc792fe07bf83a7575ae5663afa88a4b5"
+        }
+      ]
+    },
+    {
+      "id": "remotion-motion-graphics",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-motion-graphics",
+          "path": "$HOME/.codex/skills/remotion-motion-graphics/SKILL.md",
+          "sha256": "7bc57dcc03c9812feb94b32785bb2fb26ab9740f523f7def580a1b372b3b6336"
+        }
+      ]
+    },
+    {
+      "id": "remotion-captions",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-captions",
+          "path": "$HOME/.codex/skills/remotion-captions/SKILL.md",
+          "sha256": "8d08dc238f3df6c6a4ed1aaa9c30bf5e4a5fde3fa4d248db29992b94f10d45ab"
+        },
+        {
+          "declared_name": "remotion-captions",
+          "path": "$HOME/.claude/skills/remotion-captions/SKILL.md",
+          "sha256": "8d08dc238f3df6c6a4ed1aaa9c30bf5e4a5fde3fa4d248db29992b94f10d45ab"
+        }
+      ]
+    },
+    {
+      "id": "remotion-studio",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-studio",
+          "path": "$HOME/.codex/skills/remotion-studio/SKILL.md",
+          "sha256": "10f6c2c0bccf118696723137f31db18d1ccae426fd263611bc333d9c78eb367b"
+        },
+        {
+          "declared_name": "remotion-studio",
+          "path": "$HOME/.claude/skills/remotion-studio/SKILL.md",
+          "sha256": "10f6c2c0bccf118696723137f31db18d1ccae426fd263611bc333d9c78eb367b"
+        }
+      ]
+    },
+    {
+      "id": "remotion-render",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-render",
+          "path": "$HOME/.codex/skills/remotion-render/SKILL.md",
+          "sha256": "e63ccad00121c09c0b25279187f3065b60b3bd5f86d7cb01c5d8b65a641c5ca7"
+        },
+        {
+          "declared_name": "remotion-render",
+          "path": "$HOME/.claude/skills/remotion-render/SKILL.md",
+          "sha256": "e63ccad00121c09c0b25279187f3065b60b3bd5f86d7cb01c5d8b65a641c5ca7"
+        }
+      ]
+    },
+    {
+      "id": "remotion-multimedia",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-multimedia",
+          "path": "$HOME/.codex/skills/remotion-multimedia/SKILL.md",
+          "sha256": "259db7738731b3cce6183994688f2472088ae3ac46b5870d1e039a8900bff28c"
+        },
+        {
+          "declared_name": "remotion-multimedia",
+          "path": "$HOME/.claude/skills/remotion-multimedia/SKILL.md",
+          "sha256": "259db7738731b3cce6183994688f2472088ae3ac46b5870d1e039a8900bff28c"
+        }
+      ]
+    },
+    {
+      "id": "remotion-interactivity",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-interactivity",
+          "path": "$HOME/.codex/skills/remotion-interactivity/SKILL.md",
+          "sha256": "17effa2e5c589391fd113e8c52b6e531f64dd350a069d69286ff1da9d1ccdedf"
+        },
+        {
+          "declared_name": "remotion-interactivity",
+          "path": "$HOME/.claude/skills/remotion-interactivity/SKILL.md",
+          "sha256": "17effa2e5c589391fd113e8c52b6e531f64dd350a069d69286ff1da9d1ccdedf"
+        }
+      ]
+    },
+    {
+      "id": "remotion-maps",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-maps",
+          "path": "$HOME/.codex/skills/remotion-maps/SKILL.md",
+          "sha256": "da116f9bf15fed3eadc48b5ced196a651a9e233ed0cc7a8572ca55d7f4788358"
+        },
+        {
+          "declared_name": "remotion-maps",
+          "path": "$HOME/.claude/skills/remotion-maps/SKILL.md",
+          "sha256": "da116f9bf15fed3eadc48b5ced196a651a9e233ed0cc7a8572ca55d7f4788358"
+        }
+      ]
+    },
+    {
+      "id": "remotion-saas",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-saas",
+          "path": "$HOME/.codex/skills/remotion-saas/SKILL.md",
+          "sha256": "3a39b08776b794f5734f6e7b7af9e9cec024d5bfb55eeaa07bd004567b66dd76"
+        },
+        {
+          "declared_name": "remotion-saas",
+          "path": "$HOME/.claude/skills/remotion-saas/SKILL.md",
+          "sha256": "3a39b08776b794f5734f6e7b7af9e9cec024d5bfb55eeaa07bd004567b66dd76"
+        }
+      ]
+    },
+    {
+      "id": "remotion-docs",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-docs",
+          "path": "$HOME/.codex/skills/remotion-docs/SKILL.md",
+          "sha256": "201b9f500a824c31091868cc444e3efb02bc97343b4fac18ea0ccb79df0b6c3e"
+        },
+        {
+          "declared_name": "remotion-docs",
+          "path": "$HOME/.claude/skills/remotion-docs/SKILL.md",
+          "sha256": "201b9f500a824c31091868cc444e3efb02bc97343b4fac18ea0ccb79df0b6c3e"
+        }
+      ]
+    },
+    {
+      "id": "remotion-upgrade",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "remotion-upgrade",
+          "path": "$HOME/.codex/skills/remotion-upgrade/SKILL.md",
+          "sha256": "0445e0d1a1355dd32cae9fc8ab4473951a4a6235196109b96fc93db58289229c"
+        },
+        {
+          "declared_name": "remotion-upgrade",
+          "path": "$HOME/.claude/skills/remotion-upgrade/SKILL.md",
+          "sha256": "0445e0d1a1355dd32cae9fc8ab4473951a4a6235196109b96fc93db58289229c"
+        }
+      ]
+    },
+    {
+      "id": "remotion",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "ck:remotion",
+          "path": "$HOME/.claude/skills/remotion/SKILL.md",
+          "sha256": "9097dd05eaff81f6728c5cbd384b83b3fcd8752383880c2a2db768a60ba37abc"
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "ckm:video",
+          "path": "$HOME/.claude/skills/video/SKILL.md",
+          "sha256": "7f59711e4e51f20e4c66879a105182a2cd9a6f0a10f84cb67c01a2c934202efd"
+        }
+      ]
+    },
+    {
+      "id": "media-processing",
+      "group": "video-engines",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "ck:media-processing",
+          "path": "$HOME/.claude/skills/media-processing/SKILL.md",
+          "sha256": "7d8ed92c013e76593ca3f7aa05d8912295822555276fe6e2903fc23a864eee74"
+        }
+      ]
+    },
+    {
+      "id": "text-to-speech",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "text-to-speech",
+          "path": "$HOME/.codex/skills/text-to-speech/SKILL.md",
+          "sha256": "fcc105566df403f5f77c25e73b63d9eef170f7326aaea6a8bbb977386ff56abe"
+        },
+        {
+          "declared_name": "elevenlabs-text-to-speech",
+          "path": "$HOME/.claude/skills/elevenlabs-text-to-speech/SKILL.md",
+          "sha256": "c3a67e95e6691cb7e358fbd9a74ddb80a97fa491e840f25b5a89c0f286ffbd83"
+        }
+      ]
+    },
+    {
+      "id": "speech-to-text",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "speech-to-text",
+          "path": "$HOME/.codex/skills/speech-to-text/SKILL.md",
+          "sha256": "79744163f4ef2f804c75440b4d53954c93b9a93508c110fca3d847fc75683eea"
+        },
+        {
+          "declared_name": "elevenlabs-speech-to-text",
+          "path": "$HOME/.claude/skills/elevenlabs-speech-to-text/SKILL.md",
+          "sha256": "72278e0649d28f786678464effff9297e2d150544ae169434eaa859f4c0d1d4f"
+        }
+      ]
+    },
+    {
+      "id": "voice-changer",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "voice-changer",
+          "path": "$HOME/.codex/skills/voice-changer/SKILL.md",
+          "sha256": "3ad09904d45b7a21f95cbdcb65f608dfb775eecbfb020c306706ac225cad61bb"
+        },
+        {
+          "declared_name": "elevenlabs-voice-changer",
+          "path": "$HOME/.claude/skills/elevenlabs-voice-changer/SKILL.md",
+          "sha256": "13d1d245c4d05ede358ef8087531f9c76fe57d2b1d4cbcc118ab7be5c5866425"
+        }
+      ]
+    },
+    {
+      "id": "voice-isolator",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "voice-isolator",
+          "path": "$HOME/.codex/skills/voice-isolator/SKILL.md",
+          "sha256": "2f2d5a9f330e4cf6da4e1123e5076cacfc29259fe75eb891059bae67934d55e9"
+        },
+        {
+          "declared_name": "elevenlabs-voice-isolator",
+          "path": "$HOME/.claude/skills/elevenlabs-voice-isolator/SKILL.md",
+          "sha256": "5ab16a4b080e06096b3948562f8bf729543c0cbacd54d9bfa3cccbe658534906"
+        }
+      ]
+    },
+    {
+      "id": "dubbing",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "dubbing",
+          "path": "$HOME/.codex/skills/dubbing/SKILL.md",
+          "sha256": "7903128517798ea87b6405d6485a0fbf87aea7134f630592bbaa8ef037828802"
+        },
+        {
+          "declared_name": "elevenlabs-dubbing",
+          "path": "$HOME/.claude/skills/elevenlabs-dubbing/SKILL.md",
+          "sha256": "c205eae4af025e928aa97d43b9df0628fe777c83aebbdeb752e585a673b36d6f"
+        }
+      ]
+    },
+    {
+      "id": "music",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "music",
+          "path": "$HOME/.codex/skills/music/SKILL.md",
+          "sha256": "7d868f6f5a09131c11bbeccf9142cbb3cbdc27b5c47cd788c57cb5f35392763d"
+        },
+        {
+          "declared_name": "elevenlabs-music",
+          "path": "$HOME/.claude/skills/elevenlabs-music/SKILL.md",
+          "sha256": "6348d8445454a1622a8a55c71758b37b9eceb7d33686fb33366cd160c0ba95b9"
+        }
+      ]
+    },
+    {
+      "id": "sound-effects",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "sound-effects",
+          "path": "$HOME/.codex/skills/sound-effects/SKILL.md",
+          "sha256": "f032efd853426b15568a3e1f135f9c6ad8dd983e8c4f265aad58675d78e72ae3"
+        },
+        {
+          "declared_name": "elevenlabs-sound-effects",
+          "path": "$HOME/.claude/skills/elevenlabs-sound-effects/SKILL.md",
+          "sha256": "ee215b1a7235ea2332c7954cd7a5a53e4416ff85e2d83b2d25bb5587f15ab030"
+        }
+      ]
+    },
+    {
+      "id": "onboarding",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "onboarding",
+          "path": "$HOME/.codex/skills/onboarding/SKILL.md",
+          "sha256": "b30585073f65daa914a0ef7f2c791d0159debbfb754ce20349ec179214a0f0b8"
+        },
+        {
+          "declared_name": "elevenlabs-onboarding",
+          "path": "$HOME/.claude/skills/elevenlabs-onboarding/SKILL.md",
+          "sha256": "3b6419c42cf6f0839530f1f05a68491c29ad2d91d759ad0c0c6fd7e922151b26"
+        }
+      ]
+    },
+    {
+      "id": "setup-api-key",
+      "group": "audio",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "setup-api-key",
+          "path": "$HOME/.codex/skills/setup-api-key/SKILL.md",
+          "sha256": "cc3dcecd53972760e530bd08d870398f4bcdabe7cfb237dd9604baf50163f46f"
+        },
+        {
+          "declared_name": "elevenlabs-setup-api-key",
+          "path": "$HOME/.claude/skills/elevenlabs-setup-api-key/SKILL.md",
+          "sha256": "926c2acacd1ecafc5185d35af23bc147a6cff35b75764a80b7551c38918ec75c"
+        }
+      ]
+    },
+    {
+      "id": "imagegen",
+      "group": "visual-support",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "imagegen",
+          "path": "$HOME/.codex/skills/.system/imagegen/SKILL.md",
+          "sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba"
+        }
+      ]
+    },
+    {
+      "id": "canvas-design",
+      "group": "visual-support",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "canvas-design",
+          "path": "$HOME/.codex/skills/canvas-design/SKILL.md",
+          "sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b"
+        },
+        {
+          "declared_name": "canvas-design",
+          "path": "$HOME/.claude/skills/canvas-design/SKILL.md",
+          "sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b"
+        }
+      ]
+    },
+    {
+      "id": "brand-guidelines",
+      "group": "visual-support",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "brand-guidelines",
+          "path": "$HOME/.codex/skills/brand-guidelines/SKILL.md",
+          "sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe"
+        }
+      ]
+    },
+    {
+      "id": "theme-factory",
+      "group": "visual-support",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "theme-factory",
+          "path": "$HOME/.codex/skills/theme-factory/SKILL.md",
+          "sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552"
+        },
+        {
+          "declared_name": "theme-factory",
+          "path": "$HOME/.claude/skills/theme-factory/SKILL.md",
+          "sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552"
+        }
+      ]
+    },
+    {
+      "id": "algorithmic-art",
+      "group": "visual-support",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "algorithmic-art",
+          "path": "$HOME/.codex/skills/algorithmic-art/SKILL.md",
+          "sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef"
+        },
+        {
+          "declared_name": "algorithmic-art",
+          "path": "$HOME/.claude/skills/algorithmic-art/SKILL.md",
+          "sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef"
+        }
+      ]
+    },
+    {
+      "id": "gsap-core",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-core",
+          "path": "$HOME/.codex/skills/gsap-core/SKILL.md",
+          "sha256": "3887b47e050ab5afbe2a9a820f23d39fa02ab785e06a343be44c6f91d84d12b3"
+        },
+        {
+          "declared_name": "gsap-core",
+          "path": "$HOME/.claude/skills/gsap-core/SKILL.md",
+          "sha256": "3887b47e050ab5afbe2a9a820f23d39fa02ab785e06a343be44c6f91d84d12b3"
+        }
+      ]
+    },
+    {
+      "id": "gsap-timeline",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-timeline",
+          "path": "$HOME/.codex/skills/gsap-timeline/SKILL.md",
+          "sha256": "1a8b0f39cc4be3ed3d834b89672e4ae2f151b901dc3450bebf10bbc45379fe02"
+        },
+        {
+          "declared_name": "gsap-timeline",
+          "path": "$HOME/.claude/skills/gsap-timeline/SKILL.md",
+          "sha256": "1a8b0f39cc4be3ed3d834b89672e4ae2f151b901dc3450bebf10bbc45379fe02"
+        }
+      ]
+    },
+    {
+      "id": "gsap-utils",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-utils",
+          "path": "$HOME/.codex/skills/gsap-utils/SKILL.md",
+          "sha256": "1927bcc4ea95b38203404ad5ea1d060b15c4a886c65ae53e885ff1793aabe0ba"
+        },
+        {
+          "declared_name": "gsap-utils",
+          "path": "$HOME/.claude/skills/gsap-utils/SKILL.md",
+          "sha256": "1927bcc4ea95b38203404ad5ea1d060b15c4a886c65ae53e885ff1793aabe0ba"
+        }
+      ]
+    },
+    {
+      "id": "gsap-performance",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-performance",
+          "path": "$HOME/.codex/skills/gsap-performance/SKILL.md",
+          "sha256": "cb5408d6fba707aabcbfe3320317a14c1f8fca6070074e5261047930f50d441e"
+        },
+        {
+          "declared_name": "gsap-performance",
+          "path": "$HOME/.claude/skills/gsap-performance/SKILL.md",
+          "sha256": "cb5408d6fba707aabcbfe3320317a14c1f8fca6070074e5261047930f50d441e"
+        }
+      ]
+    },
+    {
+      "id": "gsap-plugins",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-plugins",
+          "path": "$HOME/.codex/skills/gsap-plugins/SKILL.md",
+          "sha256": "5838b856c74c07fbc9fa99b6dfd1eee34ea554c3e530c30e0d58014b707d70a4"
+        },
+        {
+          "declared_name": "gsap-plugins",
+          "path": "$HOME/.claude/skills/gsap-plugins/SKILL.md",
+          "sha256": "5838b856c74c07fbc9fa99b6dfd1eee34ea554c3e530c30e0d58014b707d70a4"
+        }
+      ]
+    },
+    {
+      "id": "gsap-react",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-react",
+          "path": "$HOME/.codex/skills/gsap-react/SKILL.md",
+          "sha256": "88e2a5312b45e8cc7b3c496637ff5bc9af2ae9c925b555c8b235b34cbc989d74"
+        },
+        {
+          "declared_name": "gsap-react",
+          "path": "$HOME/.claude/skills/gsap-react/SKILL.md",
+          "sha256": "88e2a5312b45e8cc7b3c496637ff5bc9af2ae9c925b555c8b235b34cbc989d74"
+        }
+      ]
+    },
+    {
+      "id": "gsap-frameworks",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-frameworks",
+          "path": "$HOME/.codex/skills/gsap-frameworks/SKILL.md",
+          "sha256": "842d9d3659ec3ddc8abbdc524708f8facf81f468ac25d0577f48c759c4fa31e6"
+        },
+        {
+          "declared_name": "gsap-frameworks",
+          "path": "$HOME/.claude/skills/gsap-frameworks/SKILL.md",
+          "sha256": "842d9d3659ec3ddc8abbdc524708f8facf81f468ac25d0577f48c759c4fa31e6"
+        }
+      ]
+    },
+    {
+      "id": "gsap-scrolltrigger",
+      "group": "gsap",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "gsap-scrolltrigger",
+          "path": "$HOME/.codex/skills/gsap-scrolltrigger/SKILL.md",
+          "sha256": "9351b6666a4749c0740406ea363aaccb99a087ff45cc5e8b99a0f367facf3ef4"
+        },
+        {
+          "declared_name": "gsap-scrolltrigger",
+          "path": "$HOME/.claude/skills/gsap-scrolltrigger/SKILL.md",
+          "sha256": "9351b6666a4749c0740406ea363aaccb99a087ff45cc5e8b99a0f367facf3ef4"
+        }
+      ]
+    },
+    {
+      "id": "threejs-fundamentals",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-fundamentals",
+          "path": "$HOME/.codex/skills/threejs-fundamentals/SKILL.md",
+          "sha256": "cb6a0db8f05bb7d8196cad0ca6ae245e2baec53da4675e1b94be4fa735ed8a09"
+        }
+      ]
+    },
+    {
+      "id": "threejs-geometry",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-geometry",
+          "path": "$HOME/.codex/skills/threejs-geometry/SKILL.md",
+          "sha256": "c29c1568cb56e902999b6a50316cd5079c53ee620138148897d269e9716e8da7"
+        }
+      ]
+    },
+    {
+      "id": "threejs-materials",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-materials",
+          "path": "$HOME/.codex/skills/threejs-materials/SKILL.md",
+          "sha256": "7d17cefac80196f3dd5068e2042e66244073925d24a55b7ca77534d594c5bc81"
+        }
+      ]
+    },
+    {
+      "id": "threejs-textures",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-textures",
+          "path": "$HOME/.codex/skills/threejs-textures/SKILL.md",
+          "sha256": "43b4fde95cf9fe42b05f38fe6a6c6d5f36eb062cb15b3fd21a0eed376a5d1d9b"
+        }
+      ]
+    },
+    {
+      "id": "threejs-lighting",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-lighting",
+          "path": "$HOME/.codex/skills/threejs-lighting/SKILL.md",
+          "sha256": "f12faf79625a7f42952124a5456d338e8399a65e16326c1a6a3239aa8e5ce489"
+        }
+      ]
+    },
+    {
+      "id": "threejs-animation",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-animation",
+          "path": "$HOME/.codex/skills/threejs-animation/SKILL.md",
+          "sha256": "0ab1b79cb977a1b5b03b247f9ef677acc76c3ee80d42904afb1b66838a19c481"
+        }
+      ]
+    },
+    {
+      "id": "threejs-shaders",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-shaders",
+          "path": "$HOME/.codex/skills/threejs-shaders/SKILL.md",
+          "sha256": "8dc55ed6cc348abaad60851ae9f3f5ebcc6e3027dd7f7a55acc1832c73f11bca"
+        }
+      ]
+    },
+    {
+      "id": "threejs-postprocessing",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-postprocessing",
+          "path": "$HOME/.codex/skills/threejs-postprocessing/SKILL.md",
+          "sha256": "0063f5f544215748ed666d878f1d69112094e662792228445a3ab9a56d209fb1"
+        }
+      ]
+    },
+    {
+      "id": "threejs-loaders",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-loaders",
+          "path": "$HOME/.codex/skills/threejs-loaders/SKILL.md",
+          "sha256": "ddf6ed2d7dfc809ce722482541fe88af7d349cd8066a4617fabaea865a2a831d"
+        }
+      ]
+    },
+    {
+      "id": "threejs-asset-pipeline",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-asset-pipeline",
+          "path": "$HOME/.codex/skills/threejs-asset-pipeline/SKILL.md",
+          "sha256": "25ca0a26ce01a1151c6757757569ef7bea56bc1af77b216c386c136060e5952d"
+        }
+      ]
+    },
+    {
+      "id": "threejs-performance",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-performance",
+          "path": "$HOME/.codex/skills/threejs-performance/SKILL.md",
+          "sha256": "dacbf6a43ed280bdfcda2ce9fcf7a3f0ae54c25ed264e62f6e9a0117d6534285"
+        }
+      ]
+    },
+    {
+      "id": "threejs-react-three-fiber",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-react-three-fiber",
+          "path": "$HOME/.codex/skills/threejs-react-three-fiber/SKILL.md",
+          "sha256": "07c0f09516dce50c91c3d23c5baca83c35d161e1abe3d8460782aba56e9476fa"
+        }
+      ]
+    },
+    {
+      "id": "threejs-interaction",
+      "group": "threejs",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "threejs-interaction",
+          "path": "$HOME/.codex/skills/threejs-interaction/SKILL.md",
+          "sha256": "46f60f3235aa11f2b89320cc2fb5b0adc167f3e8f0c717ba60ad1b006b41621f"
+        }
+      ]
+    },
+    {
+      "id": "slideshow",
+      "group": "adjacent-not-video-default",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "slideshow",
+          "path": "$HOME/.claude/skills/slideshow/SKILL.md",
+          "sha256": "4525f1a0d468f91957b638f14599c37f4af5e00c9b3c4df519a1cbe16101c908"
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "group": "adjacent-not-video-default",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "agents",
+          "path": "$HOME/.codex/skills/agents/SKILL.md",
+          "sha256": "3bc7a5c3deb869f186822e49d32aaa953971f372521f2e5e2b21ca736e8cb242"
+        },
+        {
+          "declared_name": "elevenlabs-agents",
+          "path": "$HOME/.claude/skills/elevenlabs-agents/SKILL.md",
+          "sha256": "c92e2c1627b45c322100fcf29cf57e85d8340a8bbd07bcdf810b5636684123e2"
+        }
+      ]
+    },
+    {
+      "id": "realtime",
+      "group": "adjacent-not-video-default",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "realtime",
+          "path": "$HOME/.codex/skills/realtime/SKILL.md",
+          "sha256": "7fc54e609b367be2972874090e1a09b8341a139a7d808e79fd3ce7d836042be7"
+        },
+        {
+          "declared_name": "elevenlabs-realtime",
+          "path": "$HOME/.claude/skills/elevenlabs-realtime/SKILL.md",
+          "sha256": "7e79ff52aa3ea88bcc2f48540398db387d05be825b231ba4f8af74552b545ef4"
+        }
+      ]
+    },
+    {
+      "id": "speech-engine",
+      "group": "adjacent-not-video-default",
+      "status": "local-skill-files-found; runtime/provider not implied",
+      "sources": [
+        {
+          "declared_name": "speech-engine",
+          "path": "$HOME/.codex/skills/speech-engine/SKILL.md",
+          "sha256": "531737834dc992b7241295dc7bd6d89da4d72186296510e44a4e5dd19324693b"
+        },
+        {
+          "declared_name": "elevenlabs-speech-engine",
+          "path": "$HOME/.claude/skills/elevenlabs-speech-engine/SKILL.md",
+          "sha256": "cf4ded46dad03cf7f6ac5cf537f156e26c46f78ad2c174573f64ce172a147df0"
+        }
+      ]
+    },
+    {
+      "id": "higgsfield",
+      "group": "connected-provider-routing",
+      "status": "skill and connected tool metadata available; no job or balance checked",
+      "sources": [
+        {
+          "declared_name": "higgsfield",
+          "path": "$HOME/.codex/plugins/cache/openai-curated-remote/app-6a3293e129088191abf0875820e839da/2.2.1/skills/higgsfield/SKILL.md",
+          "sha256": "f696cae58184a0d09164ad6bc0321810246157591c849c834eae0d49107b2a7e"
+        }
+      ]
+    }
+  ],
+  "tool_inventory": {
+    "observed": [
+      "ffmpeg 9.0.1",
+      "ffprobe 9.0.1",
+      "node v24.14.0",
+      "npm executable",
+      "python3 3.9.6",
+      "heygen executable"
+    ],
+    "connected_tool_families_seen": [
+      "image_gen",
+      "mcp__codex_apps__higgsfield",
+      "mcp__codex_apps__runway"
+    ],
+    "auth_and_credit_check_performed": false
+  },
+  "workflow_evidence": [
+    {
+      "project": "$HOME/Desktop/ai-courses-tiktok",
+      "engine": "hyperframes@0.8.216",
+      "review": "REVIEW.md",
+      "final_export_at_inspection": "renders/ai-courses-tiktok-no-bridge.mp4",
+      "validation": "Full check passed, decoded frames inspected, output 1080x1920 H.264/AAC 60.7s; does not establish subjective audio quality."
+    },
+    {
+      "project": "$HOME/Desktop/Porfolio-jukio",
+      "files_read": [
+        "app/components/ViewportVideo.tsx",
+        "app/components/viewport-video-playback.ts",
+        "app/work/shiki-leipzig/LaptopVideo.tsx"
+      ],
+      "validation": "Source inspected for playback documentation; website behavior not retested during skill packaging."
+    }
+  ]
+}

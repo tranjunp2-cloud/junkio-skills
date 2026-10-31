@@ -1,0 +1,4 @@
+interface:
+  display_name: "Junkio Video Builder"
+  short_description: "Build and revise videos, voiceovers and captions"
+  default_prompt: "Use $video-builder to create or revise this video using the existing assets, then verify and deliver the requested result."

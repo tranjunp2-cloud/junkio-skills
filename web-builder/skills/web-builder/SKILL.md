@@ -7,6 +7,10 @@ license: MIT
 
 # Web Builder
 
+## Scope and routing
+
+Use this skill for websites, web UI, responsive layouts and browser interactions. For an existing page edit, apply only the relevant steps; do not choose a new art direction or rebuild unrelated sections. If the task only embeds an existing video, preserve the page design and use the video playback reference from the sibling video-builder package when available. Rendering a film, changing narration or retiming captions belongs to video-builder; HTML video compositions are not websites.
+
 Turn a brief into a website that a designer would sign. The enemy is the
 "default AI site": centered hero, purple gradient, three feature cards, Inter
 everywhere, nothing that could not belong to any other product.

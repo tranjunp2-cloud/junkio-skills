@@ -4,13 +4,20 @@
     "name": "Junkio"
   },
   "metadata": {
-    "description": "Junkio's Claude Code skills for building distinctive, polished websites."
+    "description": "Junkio's skills for distinctive websites, product films, portfolio videos and reusable production workflows."
   },
   "plugins": [
     {
       "name": "web-builder",
-      "source": "./plugins/web-builder",
+      "source": "./web-builder",
       "description": "Build websites that look designed, not generated: picks a non-repeating art direction, then builds, animates and self-reviews the page.",
+      "version": "0.1.0",
+      "category": "design"
+    },
+    {
+      "name": "video-builder",
+      "source": "./video-builder",
+      "description": "Create and revise product films, portfolio videos and social clips with source-aware workflows for HyperFrames, Remotion, audio, captions and delivery.",
       "version": "0.1.0",
       "category": "design"
     }
