@@ -63,6 +63,18 @@ Skill `motion-graphics` có pipeline riêng: direction card, cảnh theo beat, s
 
 Hợp với showreel, kinetic typography, launch film cần đồng bộ motion/sound. Không ép mọi video hướng dẫn thành nhịp quảng cáo dồn dập hoặc bắt buộc grain, zoom, bass hit trên mọi cảnh.
 
+## OpenMontage
+
+Nguồn: skill global `openmontage` (`$HOME/.claude/skills/openmontage/SKILL.md`), repo `$HOME/.claude/vendor/OpenMontage` ([calesthio/OpenMontage](https://github.com/calesthio/OpenMontage), AGPL-3.0). Codex có bản riêng ở `$HOME/.codex/OpenMontage`.
+
+Chỉ chọn khi người dùng gọi tên OpenMontage hoặc khi chính pipeline của nó là giá trị cần dùng: làm video theo một video mẫu, phim tài liệu kiểu montage, cắt clip từ footage dài, avatar dẫn chuyện, hoạt hình nhân vật, cảnh bay 3D. Film portfolio, showcase UI và TikTok dự án vẫn dùng HyperFrames.
+
+- Đọc `AGENT_GUIDE.md` của repo trước mọi bước. Mọi production đi qua một pipeline trong `pipeline_defs/`, đọc stage director skill trước từng stage và chạy preflight qua registry trước khi tạo asset.
+- Chạy lệnh tại thư mục repo với môi trường của nó: `cd $HOME/.claude/vendor/OpenMontage && source .venv/bin/activate`. Thiếu `.venv` thì chạy `make setup`.
+- Đầu ra nằm trong `projects/<project-id>/` của OpenMontage; `python -m backlot open <project-id>` mở board. Khi video dùng cho dự án khác, chỉ chép MP4 và poster thành phẩm sang dự án đó, không chép mã nguồn OpenMontage (AGPL-3.0).
+- Provider trả phí chỉ chạy khi có key trong `.env` của repo; quy tắc job có phí ở mục provider bên dưới vẫn áp dụng.
+- Cập nhật: `git pull && make setup` trong repo.
+
 ## FFmpeg cho chỉnh sửa media
 
 Hợp với kiểm tra stream, cắt audio, giữ pitch khi đổi tốc độ, thay track, encode bản web hoặc trích frame. Nếu source editable còn tồn tại, cập nhật source và render để lần sửa sau không quay lại bản cũ.

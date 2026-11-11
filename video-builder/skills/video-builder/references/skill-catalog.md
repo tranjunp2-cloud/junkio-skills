@@ -14,6 +14,7 @@ Nguồn cụ thể, alias, đường dẫn và SHA-256 của từng file đượ
 | `media-use` | Asset, giọng đọc, nhạc, SFX, transcript, grading và mix trong HyperFrames | Đã dùng hướng dẫn audio/mixing và nguồn voice |
 | `remotion-to-hyperframes` | Chuyển/reuse composition hoặc footage sang HyperFrames | Chỉ khi có yêu cầu migrate, so frame trước/sau |
 | `motion-graphics` | Pipeline HTML/code riêng, motion theo beat, score và QA | Có skill, script và template; không chạy pipeline này trong tác vụ voice vừa rồi |
+| `openmontage` | Hệ thống dựng video bằng agent: pipeline có stage director, tool registry, checkpoint và board Backlot ([engines](engines.md#openmontage)) | Cài global 11/11/2026 tại `$HOME/.claude/vendor/OpenMontage` (commit `fecb9a1`); registry nhận 27 nhóm công cụ, chưa chạy production nào |
 | `remotion-best-practices` | Router chọn module Remotion theo công việc | Có file skill trên máy |
 | `remotion-create` | Tạo project/composition Remotion | Dùng khi cần project React video |
 | `remotion-markup` | Cấu trúc React, nội dung, animation và effects | Dùng khi viết/sửa composition |
